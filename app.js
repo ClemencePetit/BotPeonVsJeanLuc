@@ -1,10 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+client.login(process.env.TOKEN);
 
-//Toutes les actions à faire quand le bot se connecte
-client.on("ready", function () {
-    console.log("Mon BOT est Connecté");
-})
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
 
-client.login("NzE3ODUwNTk2OTQ1NjkwNjc2.XtgUkA.7HcoB1jD3zVIX238i14vw6AeO6s");
+client.on('message', message => {
+  if (message.content === "!ping") {
+    message.channel.send("pong");
+  }
+});
