@@ -14,7 +14,7 @@ client.on('message', message => {
   if (message.content === "!bonjour"){
 	message.reply("Bonjour "+message.author.username);
   }
-  if (message.content.startWith('!salut')){
+  if (message.content.startsWith('!salut')){
 	 if(message.mentions.user.size){
 	  const taggedUser = message.mentions.users.first();
 	  message.channel.send('Tu salues ${taggedUser.username}');
