@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const DemiurgeBot = new Discord.Client();
 
+const dotenv = require('dotenv').config()
+
 const fs = require('fs');
 DemiurgeBot.commands = new Discord.Collection();
 
@@ -12,7 +14,7 @@ for(const file of commandFiles){
 	DemiurgeBot.commands.set(command.name,command);
 }
 
-DemiurgeBot.login(process.env.TOKEN);
+DemiurgeBot.login(process.env.BOTKEY);
 
 DemiurgeBot.on('ready', () => {
   console.log(`Logged in as ${DemiurgeBot.user.tag}!`);
