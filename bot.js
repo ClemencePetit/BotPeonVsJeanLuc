@@ -1,29 +1,41 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const DemurgeBot = new Discord.Client();
 
-client.login(process.env.TOKEN);
+const fs = require('fs');
+DemurgeBot.commands = new Discord.Collection();
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+const commandFiles = fs.readdirSync('./commands').filter(file =>file.endsWith('.js'));
+
+for(const file of commandFiles){
+	const command = require(`./commands/${file}`);
+	DemurgeBot.commands.set(command.name,command);
+}
+
+DemurgeBot.login(process.env.TOKEN);
+
+DemurgeBot.on('ready', () => {
+  console.log(`Logged in as ${DemurgeBot.user.tag}!`);
+  DemurgeBot.user.setActivity("Building a world to destroy").catch(console.error);
 });
 
-client.on('message', message => {
-  if (message.content === "!ping") {
-    message.channel.send("pong");
-  }
-  if (message.content === "!bonjour"){
-	message.reply("Bonjour "+message.author.username);
-  }
-  if (message.content.startsWith('!salut')){
-	 if(message.mentions.users.size){
-	  const taggedUser = message.mentions.users.first();
-	  message.channel.send('Tu salues '+taggedUser.username);
-	  message.channel.send('Salut <@'+taggedUser.id+'> !');
-	 }
-	 else{
-		 message.reply('Faut quelqu\'un à saluer !');
-	 }
-	  
-  }
+DemurgeBot.on('message', message => {
+  
+  if (message.author.bot) return;
+
+    const args = message.content.slice(1).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+
+    if (!message.content.startsWith('!')) {
+        return;
+    }
+
+    if (!DemurgeBot.commands.has(command)) return;
+
+    try {
+        DemurgeBot.commands.get(command).execute(message, args);
+    } catch (error) {
+        console.error(error);
+        message.reply('there was an error trying to execute that command!').catch(console.error);
+    }
   
 });
