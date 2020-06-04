@@ -1,24 +1,25 @@
 const Discord = require('discord.js');
-const DemurgeBot = new Discord.Client();
+const DemiurgeBot = new Discord.Client();
 
 const fs = require('fs');
-DemurgeBot.commands = new Discord.Collection();
+DemiurgeBot.commands = new Discord.Collection();
+
+DemiurgeBot.PVSJL = new Map();
 
 const commandFiles = fs.readdirSync('./commands').filter(file =>file.endsWith('.js'));
-
 for(const file of commandFiles){
 	const command = require(`./commands/${file}`);
-	DemurgeBot.commands.set(command.name,command);
+	DemiurgeBot.commands.set(command.name,command);
 }
 
-DemurgeBot.login(process.env.TOKEN);
+DemiurgeBot.login(process.env.TOKEN);
 
-DemurgeBot.on('ready', () => {
-  console.log(`Logged in as ${DemurgeBot.user.tag}!`);
-  DemurgeBot.user.setActivity("Building a world to destroy").catch(console.error);
+DemiurgeBot.on('ready', () => {
+  console.log(`Logged in as ${DemiurgeBot.user.tag}!`);
+  DemiurgeBot.user.setActivity("Building a world to destroy").catch(console.error);
 });
 
-DemurgeBot.on('message', message => {
+DemiurgeBot.on('message', message => {
   
   if (message.author.bot) return;
 
@@ -29,10 +30,10 @@ DemurgeBot.on('message', message => {
         return;
     }
 
-    if (!DemurgeBot.commands.has(command)) return;
+    if (!DemiurgeBot.commands.has(command)) return;
 
     try {
-        DemurgeBot.commands.get(command).execute(message, args);
+        DemiurgeBot.commands.get(command).execute(DemiurgeBot, message, args);
     } catch (error) {
         console.error(error);
         message.reply('there was an error trying to execute that command!').catch(console.error);
