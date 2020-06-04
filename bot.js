@@ -12,7 +12,9 @@ for(const file of commandFiles){
 	DemiurgeBot.commands.set(command.name,command);
 }
 
-DemiurgeBot.login(process.env.TOKEN);
+//DemiurgeBot.login(process.env.TOKEN);
+
+DemiurgeBot.login('NzE3ODUwNTk2OTQ1NjkwNjc2.Xtiz5g.kibTjYghMtfEhlZ64HKpuDX0XRg');
 
 DemiurgeBot.on('ready', () => {
   console.log(`Logged in as ${DemiurgeBot.user.tag}!`);

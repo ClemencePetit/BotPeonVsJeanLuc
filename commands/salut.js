@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'salut',
 	description: 'Saluer quelqu\'un d\'autre.',
-	execute(message, arguments){
+	execute(DemiurgeBot, message, arguments){
 		if(message.mentions.users.size){
 			const taggedUser = message.mentions.users.first();
 			message.channel.send('Tu salues '+taggedUser.username);
