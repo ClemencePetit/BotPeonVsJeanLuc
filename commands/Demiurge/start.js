@@ -1,5 +1,7 @@
 let botData = require("../../BotData.js");
+const Game = require ("../../Classes/Game.js");
 
+// Game entry point
 module.exports = {
 	name: 'start',
 	description: 'Démarrer une partie',
@@ -9,6 +11,7 @@ module.exports = {
 	
 	if(!PVSJL){
 		PVSJL=botData.PVSJL;
+		PVSJL.game = new Game();
 		DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
 	}
 	
