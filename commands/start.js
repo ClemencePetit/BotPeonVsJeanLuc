@@ -13,7 +13,7 @@ module.exports = {
 	}
 	
 	if(!PVSJL.running){
-	
+	//Checking autorisations
 	if(message.member.roles.cache.some(r => r.name === "Demiurge")) {
 
 			message.channel.send(message.author.username + " choisit de démarrer une partie.");

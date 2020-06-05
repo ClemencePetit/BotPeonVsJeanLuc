@@ -1,3 +1,4 @@
+//Welcome someone in private 
 module.exports = {
 	name: 'salut',
 	description: 'Saluer quelqu\'un d\'autre.',

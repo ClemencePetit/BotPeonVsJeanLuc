@@ -1,3 +1,4 @@
+//getting packages
 const Discord = require('discord.js');
 const DemiurgeBot = new Discord.Client();
 
@@ -8,12 +9,14 @@ DemiurgeBot.commands = new Discord.Collection();
 
 DemiurgeBot.PVSJL = new Map();
 
+//Get list of commands (see folder)
 const commandFiles = fs.readdirSync('./commands').filter(file =>file.endsWith('.js'));
 for(const file of commandFiles){
 	const command = require(`./commands/${file}`);
 	DemiurgeBot.commands.set(command.name,command);
 }
 
+//Log bot in discord
 DemiurgeBot.login(process.env.BOTKEY);
 
 DemiurgeBot.on('ready', () => {
@@ -21,6 +24,7 @@ DemiurgeBot.on('ready', () => {
   DemiurgeBot.user.setActivity("Building a world to destroy").catch(console.error);
 });
 
+//React to !message
 DemiurgeBot.on('message', message => {
   
   if (message.author.bot) return;
@@ -35,6 +39,7 @@ DemiurgeBot.on('message', message => {
     if (!DemiurgeBot.commands.has(command)) return;
 
     try {
+		//execute apropriate command with apropriate args
         DemiurgeBot.commands.get(command).execute(DemiurgeBot, message, args);
     } catch (error) {
         console.error(error);
