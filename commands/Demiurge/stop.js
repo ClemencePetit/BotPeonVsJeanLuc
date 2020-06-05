@@ -1,4 +1,4 @@
-let botData = require("../BotData.js");
+let botData = require("../../BotData.js");
 
 module.exports = {
 	name: 'stop',
