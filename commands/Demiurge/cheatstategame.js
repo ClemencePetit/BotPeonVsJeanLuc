@@ -16,30 +16,13 @@ module.exports = {
 			if(message.member.roles.cache.some(r => r.name === "Demiurge")) {
 				let peonMsg = new MessageEmbed()
 				.setColor([210,210,210])
-				.setTitle("Peon")
-				.addField("Points Action",PVSJL.game.HumanTeamA.CurrentPA);
+				.setTitle("Game State")
+				.addField("Péon","PA :"+PVSJL.game.HumanTeamA.CurrentPA+" - Shield : "+PVSJL.game.HumanTeamA.ShieldDuration + " - Stun : "+PVSJL.game.HumanTeamA.StunDuration)
+				.addField("Jean-Luc","PA :"+PVSJL.game.HumanTeamB.CurrentPA+" - Shield : "+PVSJL.game.HumanTeamB.ShieldDuration+ " - Stun : "+PVSJL.game.HumanTeamB.StunDuration)
+				.addField("Dieu Péon","Shield :"+PVSJL.game.GodTeamA.ShieldCD+" - Stun : "+PVSJL.game.GodTeamA.AOEStunCD + " - Portails : "+PVSJL.game.GodTeamA.TPPortalCD+ " - Vision : "+PVSJL.game.GodTeamA.MineVisionCD)
+				.addField("Dieu Jean-Luc","Shield :"+PVSJL.game.GodTeamB.ShieldCD+" - Stun : "+PVSJL.game.GodTeamB.AOEStunCD + " - Portails : "+PVSJL.game.GodTeamB.TPPortalCD+ " - Vision : "+PVSJL.game.GodTeamB.MineVisionCD);
 				message.channel.send(peonMsg).catch(console.error);
-				let jlMsg = new MessageEmbed()
-				.setColor([210,210,210])
-				.setTitle("JL")
-				.addField("Points Action",PVSJL.game.HumanTeamB.CurrentPA);
-				message.channel.send(jlMsg).catch(console.error);
-				let dPeonMsg = new MessageEmbed()
-				.setColor([210,210,210])
-				.setTitle("Dieu Peon")
-				.addField("CD Shield",PVSJL.game.GodTeamA.ShieldCD)
-				.addField("CD Stun",PVSJL.game.GodTeamA.AOEStunCD)
-				.addField("CD Portal",PVSJL.game.GodTeamA.TPPortalCD)
-				.addField("CD Vision",PVSJL.game.GodTeamA.MineVisionCD);
-				message.channel.send(dPeonMsg).catch(console.error);
-				let djlMsg = new MessageEmbed()
-				.setColor([210,210,210])
-				.setTitle("Dieu JL")
-				.addField("CD Shield",PVSJL.game.GodTeamB.ShieldCD)
-				.addField("CD Stun",PVSJL.game.GodTeamB.AOEStunCD)
-				.addField("CD Portal",PVSJL.game.GodTeamB.TPPortalCD)
-				.addField("CD Vision",PVSJL.game.GodTeamB.MineVisionCD);
-				message.channel.send(djlMsg).catch(console.error);
+				
 			}
 		}
 		

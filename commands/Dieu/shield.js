@@ -12,8 +12,7 @@ module.exports = {
 		// Test if a game is running
 		if(PVSJL && PVSJL.running)
 		{
-			if(message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu")).length>0/*&&(message.channel.name==="dieu-peon"||message.channel.name==="dieu-jean-luc") condition de test du channel, a remettre plus tard*/) {
-				//test CD
+			if(message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu")).length>0) {
 				let player;
 				let human;
 				if(message.channel.name==="dieu-peon"&&message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu-Peon")).length>0){
@@ -32,7 +31,7 @@ module.exports = {
 						message.channel.send("Quand ce sera implémenté, ton humain sera protégé.");
 						player.AddAction("protège son humain");
 						player.useShieldCD();
-						//mettre ça dans EndTurn human.ShieldDuration=GameParams.GodShieldDuration;
+						human.ShieldDuration=GameParams.GodShieldDuration;
 					}
 					else{
 						message.channel.send("Le cooldown n\'est pas fini");
