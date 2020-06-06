@@ -20,7 +20,7 @@ module.exports = class Human extends Player
 
     get StunDuration()
     {
-        return this.m_StunDuration;
+        return this.m_stunDuration;
 	}
 
     get ShieldDuration()
@@ -85,15 +85,15 @@ module.exports = class Human extends Player
     EndTurn()
     {
         super.EndTurn();
-        m_currentPA = GameParams.HumanPa;
-        if (m_stunDuration > 0)
+        this.m_currentPA = GameParams.HumanPA;
+        if (this.m_stunDuration > 0)
         {
-            m_stunDuration -= 1;  
+            this.m_stunDuration -= 1;
 		}
 
-        if (m_shieldDuration > 0)
+        if (this.m_shieldDuration > 0)
         {
-            m_shieldDuration -= 1;  
+            this.m_shieldDuration -= 1;
 		}
 	}
 	

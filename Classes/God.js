@@ -40,7 +40,7 @@ module.exports = class God extends Player
         return this.m_divineOrderCD;
 	}
 	
-	setShieldCD() 
+	setShieldCD()
     {
         this.m_shieldCD = GameParams.GodShielCD;
 	}
@@ -69,19 +69,19 @@ module.exports = class God extends Player
 	
 	cancel()
 	{
-		if(this.m_shieldCD==GameParams.GodShielCD)
+		if(this.m_shieldCD === GameParams.GodShielCD)
 		{
 			this.m_shieldCD=0;
 		}
-		if(this.m_AOEStunCD==GameParams.GodAOEStunCD)
+		if(this.m_AOEStunCD === GameParams.GodAOEStunCD)
 		{
 			this.m_AOEStunCD=0;
 		}
-		if(this.m_mineVisionCD==GameParams.GodMineVisionCD)
+		if(this.m_mineVisionCD === GameParams.GodMineVisionCD)
 		{
 			this.m_mineVisionCD=0;
 		}
-		if(this.m_TPPortalCD==GameParams.GodTPPortalCD)
+		if(this.m_TPPortalCD === GameParams.GodTPPortalCD)
 		{
 			this.m_TPPortalCD=0;
 		}
