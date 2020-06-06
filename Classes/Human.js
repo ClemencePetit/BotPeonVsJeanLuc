@@ -9,7 +9,7 @@ module.exports = class Human extends Player
         this.m_currentPA = GameParams.HumanPA;
         this.m_stunDuration = 0; // number of turn the human will be stun
         this.m_shieldDuration = 0; // number of turn the human will be shield
-
+		this.m_position;
         return this;
     }
 
@@ -27,6 +27,11 @@ module.exports = class Human extends Player
     {
         return this.m_shieldDuration;
 	}
+	
+	get Position()
+	{
+		return this.m_position;
+	}
 
     set ShieldDuration(value)
     {
@@ -41,6 +46,11 @@ module.exports = class Human extends Player
     set CurrentPA(value)
     {
         this.m_currentPA = value;
+	}
+	
+	set Position(value)
+	{
+		this.m_position = value;
 	}
 	
 	canMine()
@@ -79,6 +89,7 @@ module.exports = class Human extends Player
 	cancel()
 	{
 		this.m_currentPA=GameParams.HumanPA;
+		this.m_shieldDuration=0;
 		super.EndTurn();
 	}
 

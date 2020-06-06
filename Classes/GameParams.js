@@ -19,7 +19,7 @@ module.exports = class GameParams
 	static get GodTPPortalCD()  { return 5; };
 	static get GodTPPortalDuration()  { return 4; };
 	static get GodTPPortalMaxDistance()  { return 4; };
-	static get GodStunDuration() { return 2; };
+	static get GodStunDuration() { return 1; };
 	static get DivineOrderCD() {return 1; };
 }
 
