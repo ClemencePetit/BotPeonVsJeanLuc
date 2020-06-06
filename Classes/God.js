@@ -6,67 +6,115 @@ module.exports = class God extends Player
     constructor() 
     {
         super();
-        this.m_shieldCD = GameParams.GodShielCD;
-        this.m_AOEStunCD = GameParams.GodAOEStunCD;
-        this.m_mineVisionCD = GameParams.GodMineVisionCD;
-        this.m_TPPortalCD = GameParams.GodTPPortalCD;
-        this.m_divineOrderCD = GameParams.DivineOrderCD;
+        this.m_shieldCD = 0;
+        this.m_AOEStunCD = 0;
+        this.m_mineVisionCD = 0;
+        this.m_TPPortalCD = 0;
+        this.m_divineOrderCD = 0;
 
         return this;
     }
 
     get ShieldCD() 
     {
-        return m_shieldCD;
+        return this.m_shieldCD;
 	}
 
     get AOEStunCD()
     {
-        return m_AOEStunCD;
+        return this.m_AOEStunCD;
 	}
 
     get MineVisionCD()
     {
-        return m_mineVisionCD;
+        return this.m_mineVisionCD;
 	}
 
     get TPPortalCD()
     {
-        return m_TPPortalCD;
+        return this.m_TPPortalCD;
 	}
 
     get DivineOrderCD()
     {
-        return m_divineOrderCD;
+        return this.m_divineOrderCD;
+	}
+	
+	setShieldCD() 
+    {
+        this.m_shieldCD = GameParams.GodShielCD;
+	}
+
+    setAOEStunCD()
+    {
+        this.m_AOEStunCD = GameParams.GodAOEStunCD;
+	}
+
+    setMineVisionCD()
+    {
+        
+        this.m_mineVisionCD = GameParams.GodMineVisionCD;
+	}
+
+    setTPPortalCD()
+    {
+        
+        this.m_TPPortalCD = GameParams.GodTPPortalCD;
+	}
+
+    setDivineOrderCD()
+    {
+        this.m_divineOrderCD = GameParams.DivineOrderCD;
+	}
+	
+	cancel()
+	{
+		if(this.m_shieldCD==GameParams.GodShielCD)
+		{
+			this.m_shieldCD=0;
+		}
+		if(this.m_AOEStunCD==GameParams.GodAOEStunCD)
+		{
+			this.m_AOEStunCD=0;
+		}
+		if(this.m_mineVisionCD==GameParams.GodMineVisionCD)
+		{
+			this.m_mineVisionCD=0;
+		}
+		if(this.m_TPPortalCD==GameParams.GodTPPortalCD)
+		{
+			this.m_TPPortalCD=0;
+		}
+		super.EndTurn();
 	}
 
     EndTurn()
     {
         super.EndTurn();
 
-        if (m_shieldCD > 0)
+        if (this.m_shieldCD > 0)
         {
-            m_shieldCD -= 1;  
+            this.m_shieldCD -= 1;  
 		}
 
-        if (m_AOEStunCD > 0)
+        if (this.m_AOEStunCD > 0)
         {
-            m_AOEStunCD -= 1;  
+            this.m_AOEStunCD -= 1;  
 		}
 
-        if (m_mineVisionCD > 0)
+        if (this.m_mineVisionCD > 0)
         {
-            m_mineVisionCD -= 1;  
+            this.m_mineVisionCD -= 1;  
 		}
 
-        if (m_TPPortalCD > 0)
+        if (this.m_TPPortalCD > 0)
         {
-            m_TPPortalCD -= 1;  
+            this.m_TPPortalCD -= 1;  
 		}
 
-        if (m_divineOrderCD > 0)
+        if (this.m_divineOrderCD > 0)
         {
-            m_divineOrderCD -= 1;  
+            this.m_divineOrderCD -= 1;  
 		}
 	}
 }

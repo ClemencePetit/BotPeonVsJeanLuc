@@ -19,6 +19,7 @@ module.exports = class Player
 
     EndTurn()
     {
-        m_actions = [];
+        this.m_actions = [];
 	}
+
 }

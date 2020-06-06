@@ -42,6 +42,49 @@ module.exports = class Human extends Player
     {
         this.m_currentPA = value;
 	}
+	
+	canMine()
+	{
+		console.log("peut mine");
+		console.log("pa :"+this.m_currentPA);
+		console.log("cout:"+GameParams.HumanDeployMine);
+		console.log(this.m_currentPA>=GameParams.HumanDeployMine);
+		return(this.m_currentPA>=GameParams.HumanDeployMine);
+	}
+	
+	canMove()
+	{
+		(this.m_currentPA>=GameParams.HumanMovementCost);
+	}
+	
+	canWall()
+	{
+		(this.m_currentPA>=GameParams.HumanPlaceWall);
+	}
+	
+	doMine()
+	{
+		
+		this.m_currentPA-=GameParams.HumanDeployMine;
+	}
+	
+	doMove()
+	{
+		this.m_currentPA-=GameParams.HumanMovementCost;
+	}
+	
+	doWall()
+	{
+		this.m_currentPA-=GameParams.HumanPlaceWall;
+	}
+	
+	
+	
+	cancel()
+	{
+		this.m_currentPA=GameParams.HumanPA;
+		super.EndTurn();
+	}
 
     EndTurn()
     {
@@ -57,4 +100,6 @@ module.exports = class Human extends Player
             m_shieldDuration -= 1;  
 		}
 	}
+	
+	
 }
