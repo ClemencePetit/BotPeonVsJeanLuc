@@ -28,7 +28,7 @@ module.exports = {
 					channel.send(message.channel.name + " vient de poser une bombe.");
 					//rajouter un moyen de savoir la position de l'humain quand il pose une mine
 					player.AddAction("pose une mine");
-					player.doMine();
+					//player.doMine();
 				}
 				else{
 					message.channel.send("Tu n'as plus assez de points d'actions.");

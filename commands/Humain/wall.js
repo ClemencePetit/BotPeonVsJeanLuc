@@ -31,22 +31,22 @@ module.exports = {
 					else if(arguments[0].match(/^right$/i)){
 						message.channel.send("Tu poses un mur à droite");
 						player.AddAction("pose un mur à droite");
-						player.doWall();
+						//player.doWall();
 					}
 					else if(arguments[0].match(/^left$/i)){
 						message.channel.send("Tu poses un mur à gauche");
 						player.AddAction("pose un mur à gauche");
-						player.doWall();
+						//player.doWall();
 					}
 					else if(arguments[0].match(/^up$/i)){
 						message.channel.send("Tu poses un mur en haut");
 						player.AddAction("pose un mur en haut");
-						player.doWall();
+						//player.doWall();
 					}
 					else if(arguments[0].match(/^down$/i)){
 						message.channel.send("Tu poses un mur en bas");
 						player.AddAction("pose un mur en bas");
-						player.doWall();
+						//player.doWall();
 					}
 					else {
 						message.channel.send("Indique un côté où poser le mur valide");
