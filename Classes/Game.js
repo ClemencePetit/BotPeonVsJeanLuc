@@ -6,9 +6,11 @@ module.exports = class Game
     constructor() 
     {
         this.m_humanTeamA = new Human();
+		this.m_humanTeamA.Position=['C','5'];
         this.m_godTeamA = new God();
         this.m_scoreTeamA = 0;
         this.m_humanTeamB = new Human();
+		this.m_humanTeamB.Position=['L','5'];
         this.m_godTeamB = new God();
         this.m_scoreTeamB = 0;
 
