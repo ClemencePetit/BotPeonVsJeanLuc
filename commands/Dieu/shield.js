@@ -28,13 +28,15 @@ module.exports = {
 				}
 				if(player){
 					if(player.canShield()){
-						message.channel.send("Quand ce sera implémenté, ton humain sera protégé.");
+						//ON SHIELD ICI
+						message.channel.send("Tu protèges ton humain");
 						player.AddAction("protège son humain");
 						player.useShieldCD();
+						// /!\ à potentiellement enlever cette ligne en cas de changement de la structure du bot
 						human.ShieldDuration=GameParams.GodShieldDuration;
 					}
 					else{
-						message.channel.send("Le cooldown n\'est pas fini");
+						message.channel.send("Le cooldown n\'est pas fini, encore " + player.ShieldCD + " tours!");
 					}
 				}
 				else{
