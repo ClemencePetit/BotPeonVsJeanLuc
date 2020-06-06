@@ -20,7 +20,7 @@ module.exports = class Human extends Player
 
     get StunDuration()
     {
-        return this.m_StunDuration;
+        return this.m_stunDuration;
 	}
 
     get ShieldDuration()
@@ -42,19 +42,60 @@ module.exports = class Human extends Player
     {
         this.m_currentPA = value;
 	}
+	
+	canMine()
+	{
+		return(this.m_currentPA>=GameParams.HumanDeployMine);
+	}
+	
+	canMove()
+	{
+		return(this.m_currentPA>=GameParams.HumanMovementCost);
+	}
+	
+	canWall()
+	{
+		return(this.m_currentPA>=GameParams.HumanPlaceWall);
+	}
+	
+	doMine()
+	{
+		
+		this.m_currentPA-=GameParams.HumanDeployMine;
+	}
+	
+	doMove()
+	{
+		this.m_currentPA-=GameParams.HumanMovementCost;
+	}
+	
+	doWall()
+	{
+		this.m_currentPA-=GameParams.HumanPlaceWall;
+	}
+	
+	
+	
+	cancel()
+	{
+		this.m_currentPA=GameParams.HumanPA;
+		super.EndTurn();
+	}
 
     EndTurn()
     {
         super.EndTurn();
-        m_currentPA = GameParams.HumanPa;
-        if (m_stunDuration > 0)
+        this.m_currentPA = GameParams.HumanPA;
+        if (this.m_stunDuration > 0)
         {
-            m_stunDuration -= 1;  
+            this.m_stunDuration -= 1;
 		}
 
-        if (m_shieldDuration > 0)
+        if (this.m_shieldDuration > 0)
         {
-            m_shieldDuration -= 1;  
+            this.m_shieldDuration -= 1;
 		}
 	}
+	
+	
 }
