@@ -45,21 +45,17 @@ module.exports = class Human extends Player
 	
 	canMine()
 	{
-		console.log("peut mine");
-		console.log("pa :"+this.m_currentPA);
-		console.log("cout:"+GameParams.HumanDeployMine);
-		console.log(this.m_currentPA>=GameParams.HumanDeployMine);
 		return(this.m_currentPA>=GameParams.HumanDeployMine);
 	}
 	
 	canMove()
 	{
-		(this.m_currentPA>=GameParams.HumanMovementCost);
+		return(this.m_currentPA>=GameParams.HumanMovementCost);
 	}
 	
 	canWall()
 	{
-		(this.m_currentPA>=GameParams.HumanPlaceWall);
+		return(this.m_currentPA>=GameParams.HumanPlaceWall);
 	}
 	
 	doMine()

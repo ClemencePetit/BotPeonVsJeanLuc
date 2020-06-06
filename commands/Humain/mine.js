@@ -30,6 +30,9 @@ module.exports = {
 					player.AddAction("pose une mine");
 					player.doMine();
 				}
+				else{
+					message.channel.send("Tu n'as plus assez de points d'actions.");
+				}
 			}
 		}
 	},
