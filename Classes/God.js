@@ -40,31 +40,58 @@ module.exports = class God extends Player
         return this.m_divineOrderCD;
 	}
 	
-	setShieldCD() 
+	useShieldCD() 
     {
         this.m_shieldCD = GameParams.GodShielCD;
 	}
 
-    setAOEStunCD()
+    useAOEStunCD()
     {
         this.m_AOEStunCD = GameParams.GodAOEStunCD;
 	}
 
-    setMineVisionCD()
+    useMineVisionCD()
     {
         
         this.m_mineVisionCD = GameParams.GodMineVisionCD;
 	}
 
-    setTPPortalCD()
+    useTPPortalCD()
     {
         
         this.m_TPPortalCD = GameParams.GodTPPortalCD;
 	}
 
-    setDivineOrderCD()
+    useDivineOrderCD()
     {
         this.m_divineOrderCD = GameParams.DivineOrderCD;
+	}
+	
+	canShield() 
+    {
+        return this.m_shieldCD ==0;
+	}
+
+    canAOEStun()
+    {
+        return this.m_AOEStunCD ==0;
+	}
+
+    canMineVision()
+    {
+        
+        return this.m_mineVisionCD ==0;
+	}
+
+    canTPPortal()
+    {
+        
+        return this.m_TPPortalCD ==0;
+	}
+
+    canDivineOrder()
+    {
+        return this.m_divineOrderCD ==0;
 	}
 	
 	cancel()
@@ -84,6 +111,10 @@ module.exports = class God extends Player
 		if(this.m_TPPortalCD==GameParams.GodTPPortalCD)
 		{
 			this.m_TPPortalCD=0;
+		}
+		if(this.m_divineOrderCD==GameParams.DivineOrderCD)
+		{
+			this.m_divineOrderCD=0;
 		}
 		super.EndTurn();
 	}
