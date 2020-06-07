@@ -1,6 +1,6 @@
 let botData = require("../../BotData.js");
 const Game = require("../../classes/Game.js");
-
+const Utils = require("../../functions/utils").Utils;
 // Move capacity
 module.exports = {
     name: 'move',
@@ -10,45 +10,43 @@ module.exports = {
 
         // Test if a game is running
         if (PVSJL && PVSJL.running) {
-            if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Humain")).length > 0/*&&(message.channel.name==="peon"||message.channel.name==="jean-luc") condition de test du channel, a remettre plus tard*/) {
+            let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message, Utils.PLAYER_TYPE.HUMAN_ONLY);
+            if (player) {
 
-                let player;
-                if (message.channel.name === "peon") {
-                    player = PVSJL.game.HumanTeamA;
-                } else if (message.channel.name === "jean-luc") {
-                    player = PVSJL.game.HumanTeamB;
-                } else {
-                    message.channel.send("Mais qui es-tu ?");
-                }
-                if (player.CanMove()) {
-                    if (arguments.length === 0) {
-                        message.channel.send("Tu dois indiquer la direction où aller.");
-                    } else if (arguments[0].match(/^right$/i)) {
-                        message.channel.send("Tu te déplaces à droite");
-                        player.AddAction("va à droite");
-                        //player.DoMove();
-                    } else if (arguments[0].match(/^left$/i)) {
-                        message.channel.send("Tu te déplaces à gauche");
-                        player.AddAction("va à gauche");
-                        //player.DoMove();
-                    } else if (arguments[0].match(/^up$/i)) {
-                        message.channel.send("Tu te déplaces en haut");
-                        player.AddAction("va en haut");
-                        //player.DoMove();
-                    } else if (arguments[0].match(/^down$/i)) {
-                        message.channel.send("Tu te déplaces en bas");
-                        player.AddAction("va en bas");
-                        //player.DoMove();
+                if (player.CanMakeActions) {
+
+                    if (player.CanMove()) {
+                        if (arguments.length === 0) {
+                            message.channel.send("Tu dois indiquer la direction où aller.");
+                        } else if (arguments[0].match(/^right$/i)) {
+                            message.channel.send("Tu te déplaces à droite");
+                            player.AddAction("va à droite");
+                            player.DoMove();
+                        } else if (arguments[0].match(/^left$/i)) {
+                            message.channel.send("Tu te déplaces à gauche");
+                            player.AddAction("va à gauche");
+                            player.DoMove();
+                        } else if (arguments[0].match(/^up$/i)) {
+                            message.channel.send("Tu te déplaces en haut");
+                            player.AddAction("va en haut");
+                            player.DoMove();
+                        } else if (arguments[0].match(/^down$/i)) {
+                            message.channel.send("Tu te déplaces en bas");
+                            player.AddAction("va en bas");
+                            player.DoMove();
+                        } else {
+                            message.channel.send("Indique une direction valide");
+                        }
                     } else {
-                        message.channel.send("Indique une direction valide");
+                        message.channel.send("Tu n'as plus assez de points d'actions.");
                     }
+
                 } else {
-                    message.channel.send("Tu n'as plus assez de points d'actions.");
+                    message.channel.send("Tu ne peux plus réaliser d'action, ton tour est fini!");
                 }
             }
 
         }
-
-
     },
 };
+

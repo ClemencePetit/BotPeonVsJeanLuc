@@ -12,12 +12,16 @@ module.exports = {
         let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message);
 
         if (player) {
-            player.CancelActions();
-            message.channel.send("Tu viens d'annuler toutes tes actions pour ce tour !");
+            if (player.CancelActions()) {
+                message.channel.send("Tu viens d'annuler toutes tes actions pour ce tour !");
 
-            // Send to admin channel that the player just canceled its turn !
-            Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient d'annuler ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/4");
-        }else {
+                // Send to admin channel that the player just canceled its turn !
+                Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient d'annuler ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/2");
+            } else {
+                message.channel.send("Impossible d'annuler tes actions, ton tour est fini !");
+            }
+
+        } else {
             message.channel.send("Auncun joueur trouvé, verifie que tu execute la commande depuis le bon channel !");
         }
     }

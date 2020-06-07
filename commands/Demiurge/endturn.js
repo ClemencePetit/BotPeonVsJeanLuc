@@ -15,8 +15,7 @@ module.exports = {
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
 
-                if (PVSJL.game.NumberPlayersReady >= 4) {
-                    PVSJL.game.EndTurn();
+                if (PVSJL.game.EndTurn()) {
 
                     Utils.PrintStringToAllChannels(DemiurgeBot, "== TOUR FINI ! (le modo va répercuter les actions) ==");
                     Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs ont réalisé les actions suivantes : //TODO ");

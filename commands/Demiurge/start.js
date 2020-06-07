@@ -24,6 +24,9 @@ module.exports = {
 
                 message.channel.send(message.author.username + " choisit de démarrer une partie.");
                 PVSJL.running = true;
+
+                PVSJL.game.StartGame();
+
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
 
                 Utils.PrintStringToAllChannels(DemiurgeBot, "===== DEBUT D'UNE NOUVELLE PARTIE =====");

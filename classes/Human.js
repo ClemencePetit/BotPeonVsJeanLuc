@@ -70,15 +70,14 @@ module.exports = class Human extends Player {
     }
 
     CancelActions() {
-        if (super.IsTurnOver) {
-            return;
+        if (super.CancelActions()) {
+
+            this.m_currentPA = GameParams.HumanPA;
+            this.m_shieldDuration = 0;
+
+            return true;
         }
-
-        super.CancelActions();
-
-        this.m_currentPA = GameParams.HumanPA;
-        this.m_shieldDuration = 0;
-
+        return false;
     }
 
     StartTurn() {

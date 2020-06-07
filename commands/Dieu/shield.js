@@ -1,6 +1,7 @@
 let botData = require("../../BotData.js");
 const Game = require("../../classes/Game.js");
 const GameParams = require("../../classes/GameParams.js");
+const Utils = require("../../functions/utils").Utils;
 
 // shield power
 module.exports = {
@@ -24,16 +25,23 @@ module.exports = {
                     message.channel.send("Tu n\'es pas au bon endroit");
                 }
                 if (player) {
-                    if (player.canShield()) {
-                        //ON SHIELD ICI
-                        message.channel.send("Tu protèges ton humain");
-                        player.AddAction("protège son humain");
-                        player.useShieldCD();
-                        // /!\ à potentiellement enlever cette ligne en cas de changement de la structure du bot
-                        human.ShieldDuration = GameParams.GodShieldDuration;
+
+                    if (player.CanMakeActions) {
+
+                        if (player.canShield()) {
+                            //ON SHIELD ICI
+                            message.channel.send("Tu protèges ton humain");
+                            player.AddAction("protège son humain");
+                            player.useShieldCD();
+                            // /!\ à potentiellement enlever cette ligne en cas de changement de la structure du bot
+                            human.ShieldDuration = GameParams.GodShieldDuration;
+                        } else {
+                            message.channel.send("Le cooldown n\'est pas fini, encore " + player.ShieldCD + " tours!");
+                        }
                     } else {
-                        message.channel.send("Le cooldown n\'est pas fini, encore " + player.ShieldCD + " tours!");
+                        message.channel.send("Tu ne peux plus réaliser d'action, ton tour est fini!");
                     }
+
                 } else {
                     console.log("mauvais endroit");
                 }

@@ -19,20 +19,32 @@ module.exports = class Player {
         return this.m_isTurnOver;
     }
 
+    get CanMakeActions() {
+        return !this.m_isTurnOver;
+    }
+
     AddAction(action) {
         this.m_actions.push(action);
     }
 
     ValidActions() {
-        this.m_isActionsOver = true;
+        if (!this.m_isTurnOver) {
+            this.m_isActionsOver = true;
+
+            return true;
+        }
+
+        return false;
     }
 
     CancelActions() {
         if (this.m_isTurnOver) {
-            return;
+            return false;
         }
 
-         this.m_isActionsOver = false;
+        this.m_isActionsOver = false;
+
+        return true;
     }
 
     EndTurn() {

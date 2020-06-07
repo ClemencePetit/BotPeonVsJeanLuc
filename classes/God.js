@@ -56,49 +56,49 @@ module.exports = class God extends Player {
     }
 
     canShield() {
-        return this.m_shieldCD == 0;
+        return this.m_shieldCD === 0;
     }
 
     canAOEStun() {
-        return this.m_AOEStunCD == 0;
+        return this.m_AOEStunCD === 0;
     }
 
     canMineVision() {
 
-        return this.m_mineVisionCD == 0;
+        return this.m_mineVisionCD === 0;
     }
 
     canTPPortal() {
 
-        return this.m_TPPortalCD == 0;
+        return this.m_TPPortalCD === 0;
     }
 
     canDivineOrder() {
-        return this.m_divineOrderCD == 0;
+        return this.m_divineOrderCD === 0;
     }
 
     CancelActions() {
-        if (super.IsTurnOver) {
-            return;
-        }
+         if (super.CancelActions()) {
+             if (this.m_shieldCD === GameParams.GodShielCD) {
+                 this.m_shieldCD = 0;
+             }
+             if (this.m_AOEStunCD === GameParams.GodAOEStunCD) {
+                 this.m_AOEStunCD = 0;
+             }
+             if (this.m_mineVisionCD === GameParams.GodMineVisionCD) {
+                 this.m_mineVisionCD = 0;
+             }
+             if (this.m_TPPortalCD === GameParams.GodTPPortalCD) {
+                 this.m_TPPortalCD = 0;
+             }
+             if (this.m_divineOrderCD === GameParams.DivineOrderCD) {
+                 this.m_divineOrderCD = 0;
+             }
 
-        super.CancelActions();
+             return true;
+         }
 
-        if (this.m_shieldCD === GameParams.GodShielCD) {
-            this.m_shieldCD = 0;
-        }
-        if (this.m_AOEStunCD === GameParams.GodAOEStunCD) {
-            this.m_AOEStunCD = 0;
-        }
-        if (this.m_mineVisionCD === GameParams.GodMineVisionCD) {
-            this.m_mineVisionCD = 0;
-        }
-        if (this.m_TPPortalCD === GameParams.GodTPPortalCD) {
-            this.m_TPPortalCD = 0;
-        }
-        if (this.m_divineOrderCD === GameParams.DivineOrderCD) {
-            this.m_divineOrderCD = 0;
-        }
+         return false;
     }
 
     StartTurn() {
