@@ -1,5 +1,5 @@
 let botData = require("../BotData.js");
-const Utils = require("../functions/utils");
+const Utils = require("../functions/utils").Utils;
 
 module.exports = {
     name: 'done',
@@ -11,13 +11,12 @@ module.exports = {
 
         if (player) {
 
-            player.ValidAction();
+            player.ValidActions();
             message.channel.send("Tes actions sont validées !");
 
-            // Send to admin channel that the player just finished its turn !
-            const channel = DemiurgeBot.channels.cache.find(ch => ch.name === 'modo');
-
-            channel.send(message.channel.name + " vient de valider ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/4");
+            Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient de valider ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/4");
+        }else {
+            message.channel.send("Aucun joueur trouvé, verifie que tu execute la commande depuis le bon channel !");
         }
     }
 };

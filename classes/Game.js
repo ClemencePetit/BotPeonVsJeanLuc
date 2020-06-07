@@ -57,11 +57,11 @@ module.exports = class Game {
     get NumberPlayersReady() {
         let nb = 0;
 
-        this.HumanTeamA.IsActionsOver() ? nb++ : nb;
-        this.HumanTeamB.IsActionsOver() ? nb++ : nb;
+        this.HumanTeamA.IsActionsOver ? nb++ : nb;
+        this.HumanTeamB.IsActionsOver ? nb++ : nb;
 
-        this.GodTeamA.IsActionsOver() ? nb++ : nb;
-        this.GodTeamB.IsActionsOver() ? nb++ : nb;
+        this.GodTeamA.IsActionsOver ? nb++ : nb;
+        this.GodTeamB.IsActionsOver ? nb++ : nb;
 
         return nb;
     }

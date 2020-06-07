@@ -8,21 +8,15 @@ class Utils {
 
         // Test if a game is running
         if (PVSJL && PVSJL.running) {
-            if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Demiurge")).length === 0) {
 
-                if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Humain")).length > 0) {
-                    if (message.channel.name === "peon") {
-                        player = PVSJL.game.HumanTeamA;
-                    } else if (message.channel.name === "jean-luc") {
-                        player = PVSJL.game.HumanTeamB;
-                    }
-                } else if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu")).length > 0) {
-                    if (message.channel.name === "dieu-peon") {
-                        player = PVSJL.game.GodTeamA;
-                    } else if (message.channel.name === "dieu-jean-luc") {
-                        player = PVSJL.game.GodTeamB;
-                    }
-                }
+            if (message.channel.name === "peon") {
+                player = PVSJL.game.HumanTeamA;
+            } else if (message.channel.name === "jean-luc") {
+                player = PVSJL.game.HumanTeamB;
+            } else if (message.channel.name === "dieu-peon") {
+                player = PVSJL.game.GodTeamA;
+            } else if (message.channel.name === "dieu-jean-luc") {
+                player = PVSJL.game.GodTeamB;
             }
         }
 

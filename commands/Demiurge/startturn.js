@@ -9,7 +9,7 @@ module.exports = {
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
-        if (!PVSJL.running) {
+        if (PVSJL.running) {
 
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {

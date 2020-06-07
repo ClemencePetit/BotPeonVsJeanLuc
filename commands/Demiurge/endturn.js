@@ -10,7 +10,7 @@ module.exports = {
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
-        if (!PVSJL.running) {
+        if (PVSJL.running) {
 
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
@@ -21,6 +21,7 @@ module.exports = {
                     Utils.PrintStringToAllChannels(DemiurgeBot, "== TOUR FINI ! (le modo va répercuter les actions) ==");
                     Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs ont réalisé les actions suivantes : //TODO ");
                 }else {
+
                     Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs n'ont pas tous fini leurs actions !");
                 }
             } else {

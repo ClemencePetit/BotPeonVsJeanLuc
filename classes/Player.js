@@ -28,9 +28,11 @@ module.exports = class Player {
     }
 
     CancelActions() {
-        if (this.IsTurnOver) {
+        if (this.m_isTurnOver) {
             return;
         }
+
+         this.m_isActionsOver = false;
     }
 
     EndTurn() {

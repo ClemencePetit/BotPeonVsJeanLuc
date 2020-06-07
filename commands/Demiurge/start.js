@@ -1,4 +1,4 @@
-let botData = require("../../BotData.js");
+let BotData = require("../../BotData.js");
 const Game = require("../../classes/Game.js");
 const Utils = require("../../functions/utils").Utils;
 
@@ -11,12 +11,14 @@ module.exports = {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
 
         if (!PVSJL) {
-            PVSJL = botData.PVSJL;
+            PVSJL = BotData.PVSJL;
             PVSJL.game = new Game();
+
             DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
         }
 
         if (!PVSJL.running) {
+
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
 

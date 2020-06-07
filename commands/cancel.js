@@ -16,13 +16,9 @@ module.exports = {
             message.channel.send("Tu viens d'annuler toutes tes actions pour ce tour !");
 
             // Send to admin channel that the player just canceled its turn !
-            const channel = DemiurgeBot.channels.cache.find(ch => ch.name === 'modo');
-            channel.send(message.channel.name + " vient d'annuler ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/4");
-        } else {
-            PVSJL.game.HumanTeamA.CancelActions();
-            PVSJL.game.HumanTeamB.CancelActions();
-            PVSJL.game.GodTeamA.CancelActions();
-            PVSJL.game.GodTeamB.CancelActions();
+            Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient d'annuler ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/4");
+        }else {
+            message.channel.send("Auncun joueur trouvé, verifie que tu execute la commande depuis le bon channel !");
         }
     }
 };
