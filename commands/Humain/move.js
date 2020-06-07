@@ -20,25 +20,25 @@ module.exports = {
                 } else {
                     message.channel.send("Mais qui es-tu ?");
                 }
-                if (player.canMove()) {
+                if (player.CanMove()) {
                     if (arguments.length === 0) {
                         message.channel.send("Tu dois indiquer la direction où aller.");
                     } else if (arguments[0].match(/^right$/i)) {
                         message.channel.send("Tu te déplaces à droite");
                         player.AddAction("va à droite");
-                        //player.doMove();
+                        //player.DoMove();
                     } else if (arguments[0].match(/^left$/i)) {
                         message.channel.send("Tu te déplaces à gauche");
                         player.AddAction("va à gauche");
-                        //player.doMove();
+                        //player.DoMove();
                     } else if (arguments[0].match(/^up$/i)) {
                         message.channel.send("Tu te déplaces en haut");
                         player.AddAction("va en haut");
-                        //player.doMove();
+                        //player.DoMove();
                     } else if (arguments[0].match(/^down$/i)) {
                         message.channel.send("Tu te déplaces en bas");
                         player.AddAction("va en bas");
-                        //player.doMove();
+                        //player.DoMove();
                     } else {
                         message.channel.send("Indique une direction valide");
                     }

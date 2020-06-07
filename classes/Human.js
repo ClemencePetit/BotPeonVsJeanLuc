@@ -52,7 +52,7 @@ module.exports = class Human extends Player {
         return (this.m_currentPA >= GameParams.HumanMovementCost);
     }
 
-    canWall() {
+    CanWall() {
         return (this.m_currentPA >= GameParams.HumanPlaceWall);
     }
 

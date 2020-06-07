@@ -20,26 +20,26 @@ module.exports = {
                 } else {
                     message.channel.send("Mais qui es-tu ?");
                 }
-                if (player.canWall()) {
+                if (player.CanWall()) {
                     //pour chaque vérifier s'il n'y a pas déjà un mur ?
                     if (arguments.length === 0) {
                         message.channel.send("Tu dois indiquer le côté où poser le mur.");
                     } else if (arguments[0].match(/^right$/i)) {
                         message.channel.send("Tu poses un mur à droite");
                         player.AddAction("pose un mur à droite");
-                        //player.doWall();
+                        //player.DoWall();
                     } else if (arguments[0].match(/^left$/i)) {
                         message.channel.send("Tu poses un mur à gauche");
                         player.AddAction("pose un mur à gauche");
-                        //player.doWall();
+                        //player.DoWall();
                     } else if (arguments[0].match(/^up$/i)) {
                         message.channel.send("Tu poses un mur en haut");
                         player.AddAction("pose un mur en haut");
-                        //player.doWall();
+                        //player.DoWall();
                     } else if (arguments[0].match(/^down$/i)) {
                         message.channel.send("Tu poses un mur en bas");
                         player.AddAction("pose un mur en bas");
-                        //player.doWall();
+                        //player.DoWall();
                     } else {
                         message.channel.send("Indique un côté où poser le mur valide");
                     }
