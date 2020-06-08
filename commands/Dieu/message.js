@@ -25,7 +25,7 @@ module.exports = {
 					const colonne="abcdefghijklmn".charAt(Math.floor(Math.random() * Math.floor(14)));
 					//tester si c'est dans une des bases
 					player.useDivineOrderCD();
-					player.AddAction("Message divin en " +colonne+ligne);
+					player.AddAction("Message divin envoyé");
 					message.channel.send("Ton message divin est arrivé en "+colonne+ligne+".");
 				}
 				else{
