@@ -16,6 +16,17 @@ module.exports = {
 
                 PVSJL.game.StartTurn();
                 Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
+				if(PVSJL.game.GetCurrentTurnType==1)
+				{
+					if(PVSJL.game.GodTeamA.TPPortalCD==2)
+					{
+						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Péon se ferment.");
+					}
+					if(PVSJL.game.GodTeamA.TPPortalCD==2)
+					{
+						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Jean-Luc se ferment.");
+					}
+				}
 
             } else {
                 message.channel.send("Tu n\'as pas l\'autorisation de démarrer un nouveau tour.");

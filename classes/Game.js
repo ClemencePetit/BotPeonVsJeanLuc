@@ -101,7 +101,8 @@ module.exports = class Game {
 
             // We switch the gods turn
             this.GodTeamA.StartTurn();
-            this.GodTeamB.StartTurn()
+			this.GodTeamB.StartTurn();
+			
 
             this.m_currentTurnType = TurnType.GOD;
         } else if (this.m_currentTurnType === TurnType.GOD) {
@@ -111,6 +112,7 @@ module.exports = class Game {
             this.HumanTeamB.StartTurn();
 
             this.m_currentTurn++;
+			this.m_currentTurnType = TurnType.HUMAN;
         }
 
     }

@@ -16,6 +16,10 @@ module.exports = {
 
             DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
         }
+		if(!PVSJL.game)
+		{
+			PVSJL.game = new Game();
+		}
 
         if (!PVSJL.running) {
 
