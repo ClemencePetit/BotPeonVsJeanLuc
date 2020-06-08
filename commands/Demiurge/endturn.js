@@ -18,7 +18,36 @@ module.exports = {
                 if (PVSJL.game.EndTurn()) {
 
                     Utils.PrintStringToAllChannels(DemiurgeBot, "== TOUR FINI ! (le modo va répercuter les actions) ==");
-                    Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs ont réalisé les actions suivantes : //TODO ");
+					// Getting each player's actions
+					let player;
+					let actions_msg;
+					if(PVSJL.game.GetCurrentTurnType==1){
+						player = PVSJL.game.GodTeamA;
+						actions_msg = "\nJoueur Dieu-Peon:\n";
+						player.Actions.forEach(action => {
+							actions_msg += "- " + action + "\n";
+						});
+						player = PVSJL.game.GodTeamB;
+						actions_msg += "\nJoueur Dieu-Jean-Luc:\n";
+						player.Actions.forEach(action => {
+							actions_msg += "- " + action + "\n";
+						});
+
+					}
+					else{
+						player = PVSJL.game.HumanTeamA;
+						actions_msg = "\n Joueur Humain-Peon:\n";
+						player.Actions.forEach(action => {
+							actions_msg += "- " + action + "\n";
+						});
+						player = PVSJL.game.HumanTeamB;
+						actions_msg += "\nJoueur Humain-Jean-Luc:\n";
+						player.Actions.forEach(action => {
+							actions_msg += "- " + action + "\n";
+						});
+					}
+                  
+                    Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs ont réalisé les actions suivantes : "+actions_msg);
                 }else {
 
                     Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs n'ont pas tous fini leurs actions !");

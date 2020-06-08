@@ -43,6 +43,7 @@ module.exports = class Player {
         }
 
         this.m_isActionsOver = false;
+		this.m_actions = [];
 
         return true;
     }
