@@ -18,25 +18,27 @@ module.exports = {
 
                     //test CD
                     if (player.canTPPortal()) {
-                        message.channel.send("Tu as déjà utilisé ce pouvoir récemment! encore " + player.TPPortalCD + " tours pour pouvoir l'utiliser");
-                    } else if (arguments.length < 2) {
-                        message.channel.send("Tu dois indiquer où créer les portails.");
-                    } else if (arguments[0].match(/^[a-n][1-9]$/i) && arguments[1].match(/^[a-n][1-9]$/i)) {
-                        //test distance
-                        let disRow = Math.abs(arguments[0].toLowerCase().charCodeAt(0) - arguments[1].toLowerCase().charCodeAt(0));
-                        let disLine = Math.abs(parseInt(arguments[0][1]) - parseInt(arguments[1][1]));
-                        let maxDis = GameParams.GodTPPortalMaxDistance;
-                        if ((disRow + disLine) <= maxDis + 1) {
-                            //ON POSE LES PORTAILS ICI
-                            player.useTPPortalCD();
-                            player.AddAction("Pose portail " + arguments[0] + " " + arguments[1]);
-                            message.channel.send("Tu as posé des portails");
-                        } else {
-                            message.channel.send("Tes portails sont trop éloignés! La distance maximale est de " + maxDis + " cases.");
-                        }
+                        if (arguments.length < 2) {
+							message.channel.send("Tu dois indiquer où créer les portails.");
+						} else if (arguments[0].match(/^[a-n][1-9]$/i) && arguments[1].match(/^[a-n][1-9]$/i)) {
+							//test distance
+							let disRow = Math.abs(arguments[0].toLowerCase().charCodeAt(0) - arguments[1].toLowerCase().charCodeAt(0));
+							let disLine = Math.abs(parseInt(arguments[0][1]) - parseInt(arguments[1][1]));
+							let maxDis = GameParams.GodTPPortalMaxDistance;
+							if ((disRow + disLine) <= maxDis + 1) {
+								//ON POSE LES PORTAILS ICI
+								player.useTPPortalCD();
+								player.AddAction("Pose portail " + arguments[0] + " " + arguments[1]);
+								message.channel.send("Tu as posé des portails");
+							} else {
+								message.channel.send("Tes portails sont trop éloignés! La distance maximale est de " + maxDis + " cases.");
+							}
+						} else {
+							message.channel.send("Tu dois indiquer un positionnement valide.");
+						}
                     } else {
-                        message.channel.send("Tu dois indiquer un positionnement valide.");
-                    }
+						message.channel.send("Tu as déjà utilisé ce pouvoir récemment! encore " + player.TPPortalCD + " tours pour pouvoir l'utiliser");
+					}
 
 
                 } else {

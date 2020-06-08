@@ -1,6 +1,6 @@
-const GameParams = require("../../classes/GameParams.js");
-let botData = require("../../BotData.js");
-const Player = require("../../classes/Player.js");
+const GameParams = require("../classes/GameParams.js");
+let botData = require("../BotData.js");
+const Player = require("../classes/Player.js");
 
 module.exports =
     {
