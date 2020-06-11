@@ -1,7 +1,7 @@
 class Action {
-    constructor() {
-        this.m_priority = 0;
-        this.m_string = "";
+    constructor(priority, string) {
+        this.m_priority = priority;
+        this.m_string = string;
     }
 
     get Priority() {
@@ -86,7 +86,7 @@ class Portal extends Action {
 
 class Shield extends Action {
     constructor() {
-        super(0, "Proteger son Humain grâce à un BOUCLIER.");
+        super(0, "Protéger son Humain grâce à un BOUCLIER.");
     }
 }
 

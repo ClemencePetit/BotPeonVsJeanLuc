@@ -40,26 +40,41 @@ module.exports = class Human extends Player {
 
     DoMine() {
         if (this.CanMine()) {
-            this.m_currentPA -= GameParams.HumanDeployMine;
+            let action = new Actions.Mine();
+            if (super.AddAction(action)) {
 
-            super.AddAction(new Actions.Mine());
+                this.m_currentPA -= GameParams.HumanDeployMine;
+                return action;
+            }
         }
+
+        return null;
     }
 
     DoMove(direction) {
         if (this.CanMove()) {
-            this.m_currentPA -= GameParams.HumanMovementCost;
+            let action = new Actions.Move(direction);
+            if (super.AddAction(action)){
 
-            super.AddAction(new Actions.Move(direction));
+                this.m_currentPA -= GameParams.HumanMovementCost;
+                return action;
+            }
         }
+
+        return null;
     }
 
     DoWall(direction) {
         if (this.CanWall()) {
-            this.m_currentPA -= GameParams.HumanPlaceWall;
+            let action = new Actions.Wall(direction);
+            if (super.AddAction(action)) {
 
-            super.AddAction(new Actions.Wall(direction));
+                this.m_currentPA -= GameParams.HumanPlaceWall;
+                return action;
+            }
         }
+
+        return null;
     }
 
     CancelActions() {

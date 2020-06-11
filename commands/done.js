@@ -13,7 +13,7 @@ module.exports = {
 
             if(player.ValidActions()) {
                 message.channel.send("Tes actions sont validées !");
-                Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient de valider ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/2");
+                Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient de valider ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/4");
             }else {
                 message.channel.send("Impossible de valider tes actions, ton tour est fini !");
             }

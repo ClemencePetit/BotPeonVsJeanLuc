@@ -1,4 +1,4 @@
-const Actions = require("Actions");
+const Actions = require("./Actions.js");
 
 const NB_ACTION_SLOTS = 4;
 
@@ -15,6 +15,14 @@ module.exports = class Player {
         return this;
     }
 
+    get ActionSlots() {
+        return this.m_actionSlots;
+    }
+
+    IsActionSlotsFull() {
+        return this.m_actionSlots.length === NB_ACTION_SLOTS;
+    }
+
     IsActionsOver() {
         return this.m_isActionsOver;
     }
@@ -28,12 +36,15 @@ module.exports = class Player {
     }
 
     AddAction(action) {
-
         if (this.m_currentActionSlot < this.m_actionSlots.length) {
 
             this.m_actionSlots[this.m_currentActionSlot] = action;
             this.m_currentActionSlot++;
+
+            return true;
         }
+
+        return false;
     }
 
     Wait() {

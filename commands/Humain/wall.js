@@ -1,6 +1,5 @@
-let botData = require("../../BotData.js");
-const Game = require("../../classes/Game.js");
 const Utils = require("../../functions/utils").Utils;
+const Actions = require("../../classes/Actions");
 
 // Wall capacity
 module.exports = {
@@ -13,45 +12,37 @@ module.exports = {
         if (PVSJL && PVSJL.running) {
 
             let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message, Utils.PLAYER_TYPE.HUMAN_ONLY);
-            if (player) {
+            if (Utils.CanPlayerMakeAction(player, message.channel)) {
 
-                if (player.CanMakeActions) {
+                if (player.CanWall()) {
 
+                    if (arguments.length === 0) {
+                        message.channel.send("Tu dois indiquer la direction où poser le mur.");
+                    } else {
 
-                    if (player.CanWall()) {
-                        //pour chaque vérifier s'il n'y a pas déjà un mur ?
-                        if (arguments.length === 0) {
-                            message.channel.send("Tu dois indiquer le côté où poser le mur.");
-                        } else if (arguments[0].match(/^right$/i)) {
-                            message.channel.send("Tu poses un mur à droite");
+                        let direction = -1;
+                        let directionString = arguments[0];
 
-                            player.AddAction("pose un mur à droite");
-                            player.DoWall();
-                        } else if (arguments[0].match(/^left$/i)) {
-                            message.channel.send("Tu poses un mur à gauche");
-
-                            player.AddAction("pose un mur à gauche");
-                            player.DoWall();
-                        } else if (arguments[0].match(/^up$/i)) {
-                            message.channel.send("Tu poses un mur en haut");
-
-                            player.AddAction("pose un mur en haut");
-                            player.DoWall();
-                        } else if (arguments[0].match(/^down$/i)) {
-                            message.channel.send("Tu poses un mur en bas");
-
-                            player.AddAction("pose un mur en bas");
-                            player.DoWall();
-                        } else {
-                            message.channel.send("Indique un côté où poser le mur valide");
+                        if (directionString.match(/^right$/i)) {
+                            direction = Actions.Direction.RIGHT;
+                        } else if (directionString.match(/^left$/i)) {
+                            direction = Actions.Direction.LEFT;
+                        } else if (directionString.match(/^up$/i)) {
+                            direction = Actions.Direction.UP;
+                        } else if (directionString.match(/^down$/i)) {
+                            direction = Actions.Direction.DOWN;
                         }
 
-                    } else {
-                        message.channel.send("Tu n'as plus assez de points d'actions.");
+                        if (direction === -1) {
+                            message.channel.send("Tu dois indiquer une position valide !");
+                        } else {
+                            let action = player.DoWall(direction);
+                            Utils.HandlePlayerAction(action, message.channel);
+                        }
                     }
 
                 } else {
-                    message.channel.send("Tu ne peux plus réaliser d'action, ton tour est fini!");
+                    message.channel.send("Tu n'as plus assez de points d'actions.");
                 }
             }
         }
@@ -62,6 +53,3 @@ module.exports = {
 //amélioration : 
 //permettre de choisir l'orientation du mur
 //permettre de poser un mur + loin pour + de PA
-
-
-

@@ -52,6 +52,25 @@ class Utils {
         return player;
     }
 
+    // Returns a String with all the player's actions for the turn.
+    static GetPlayerActionsString(player) {
+        if (player == null) {
+            return "";
+        }
+
+        let actionsStr = "";
+
+        let actionSlots = player.ActionSlots;
+        for (let i = 0; i < actionSlots.length; i++) {
+
+            let action = actionSlots[i];
+            let actionStr = action != null ? action.ToString() : "NON DEFINI";
+
+            actionsStr += (i + 1) + " - " + actionStr + "\n";
+        }
+
+        return actionsStr;
+    }
 
     // Prints the message to all channels (dieu-peon; peon; dieu-jean-luc; jean-luc)
     static PrintStringToAllChannels(DemiurgeBot, string) {
@@ -74,10 +93,44 @@ class Utils {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
         if (PVSJL && PVSJL.running && PVSJL.game) {
 
-            let turnType = PVSJL.game.GetCurrentTurnType === 0 ? "HUMAINS" : "DIEUX";
-
-            Utils.PrintStringToAllChannels(DemiurgeBot, "=== TOUR EN COURS : " + PVSJL.game.CurrentTurn + "  | " + turnType + "  ===");
+            Utils.PrintStringToAllChannels(DemiurgeBot, "=== TOUR EN COURS : " + PVSJL.game.CurrentTurn + "  ===");
             Utils.PrintStringToAllChannels(DemiurgeBot, "-- SCORE TEAM PEON : " + PVSJL.game.ScoreTeamA + "  |  " + "SCORE TEAM JEAN-LUC : " + PVSJL.game.ScoreTeamB + " --");
+        }
+    }
+
+    // Determine if the player can make an action (is the turn over ?) and prints according message
+    static CanPlayerMakeAction(player, channel) {
+
+        if (player) {
+
+            if (!player.IsTurnOver()) {
+
+                if (player.CanMakeActions()) {
+
+                    return true;
+                } else {
+                    channel.send("Tu as défini toutes tes actions pour ce tour, fais !done pour confirmer.");
+                }
+            } else {
+                channel.send("Tu ne peux plus réaliser d'action, ton tour est fini !");
+            }
+        } else {
+            channel.send("Aucun joueur trouvé, verifie que tu execute la commande depuis le bon channel !");
+        }
+
+        return false;
+    }
+
+    // Prints according messages when player just realize its action.
+    static HandlePlayerAction(action, channel) {
+        if (action) {
+            channel.send("Action " + "\" " + action.ToString() + " \" correctement ajoutée dans la liste d'actions !");
+
+            if (player.IsActionSlotsFull()) {
+                channel.send("Tu as défini toutes tes actions pour ce tour, fais !done pour confirmer.");
+            }
+        } else {
+            channel.send("Erreur dans l'ajout de l'action (contacter les développeurs).");
         }
     }
 }
