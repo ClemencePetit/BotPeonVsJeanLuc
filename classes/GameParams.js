@@ -1,5 +1,8 @@
 module.exports = class GameParams
 {
+	// Players' Params
+	static get NbActionSlots() { return 4; }
+
 	// Humans' Params
 	static get HumanPA() { return 4; };
 	static get HumanMovementCost() { return 1; };
@@ -8,8 +11,8 @@ module.exports = class GameParams
 	static get HumanPlaceWall() { return 3; };
 	static get HumanMineStunDuration() { return 1; };
 
-	// Gods' param 
-	// Le cd indique dans combien de tour je pourrais le réutiliser
+	// Gods' param
+	// Le cd indique dans combien de tour je pourrais le rï¿½utiliser
 	// et non pas combien de temps de cooldown.
 	static get GodShielCD() { return 4; };
 	static get GodShieldDuration()  { return 3; };

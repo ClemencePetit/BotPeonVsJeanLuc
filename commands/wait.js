@@ -15,7 +15,7 @@ module.exports = {
             if (Utils.CanPlayerMakeAction(player, message.channel)) {
 
                 let action = player.DoWait();
-                Utils.HandlePlayerAction(action, message.channel);
+                Utils.HandlePlayerAction(player, action, message.channel);
             }
         }
     },

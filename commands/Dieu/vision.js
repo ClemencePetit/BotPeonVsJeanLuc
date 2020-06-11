@@ -12,32 +12,17 @@ module.exports = {
 
         // Test if a game is running
         if (PVSJL && PVSJL.running) {
+
             let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message, Utils.PLAYER_TYPE.GOD_ONLY);
-            if (player) {
+            if (Utils.CanPlayerMakeAction(player, message.channel)) {
 
-                if (player.CanMakeActions) {
-
-                    //test CD
-                    if (player.canMineVision()) {
-                        if (message.channel.name === "dieu-peon") {
-                            const channel = DemiurgeBot.channels.cache.find(ch => ch.name === 'peon');
-                            //channel.send("Quand ce sera implementé, ton Dieu t'indique où sont les mines.");
-                        } else {
-                            const channel = DemiurgeBot.channels.cache.find(ch => ch.name === 'jean-luc');
-                            //channel.send("Quand ce sera implementé, ton Dieu t'indique où sont les mines.");
-                        }
-                        //VISION ICI
-                        message.channel.send("Détecteur de mine activé!");
-                        player.useMineVisionCD();
-                        player.AddAction("Détecte les mines pour lui et son humain");
-                    } else {
-                        message.channel.send("Un peu de patience. Tu pourras détecter les mines dans " + player.MineVisionCD + " tours");
-                    }
+                if (player.CanMineVision()) {
+                    let action = player.DoMineVision();
+                    Utils.HandlePlayerAction(player, action, message.channel);
                 } else {
-                    message.channel.send("Tu ne peux plus réaliser d'action, ton tour est fini!");
+                    message.channel.send("Un peu de patience. Tu pourras détecter les mines dans " + player.MineVisionCD + " tour(s) !");
                 }
             }
         }
     },
 };
-

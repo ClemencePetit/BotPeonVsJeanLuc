@@ -52,19 +52,19 @@ class Wait extends Action {
 
 class Mine extends Action {
     constructor() {
-        super(2, "Poser une MINE.");
+        super(2, "Poser une MINE");
     }
 }
 
 class Move extends Action {
     constructor(direction) {
-        super(4, "Se déplacer " + DirectionToString(direction) + ".");
+        super(4, "Se déplacer " + DirectionToString(direction));
     }
 }
 
 class Wall extends Action {
     constructor(direction) {
-        super(3, "Poser un mur " + DirectionToString(direction) + ".");
+        super(3, "Poser un mur " + DirectionToString(direction));
     }
 }
 
@@ -80,25 +80,25 @@ class Message extends Action {
 
 class Portal extends Action {
     constructor(position_1, position_2) {
-        super(1, "Poser un portail de " + position_1 + " à " + position_2);
+        super(1, "Poser un PORTAIL de " + position_1 + " à " + position_2);
     }
 }
 
 class Shield extends Action {
     constructor() {
-        super(0, "Protéger son Humain grâce à un BOUCLIER.");
+        super(0, "Protéger son Humain grâce à un BOUCLIER");
     }
 }
 
 class Stun extends Action {
     constructor(position) {
-        super(5, "Lancer un éclair d'etourdissement en " + position);
+        super(5, "Lancer un ECLAIR d'etourdissement en " + position);
     }
 }
 
 class Vision extends Action {
     constructor() {
-        super(7, "Détecter les mines pour son Humain.");
+        super(7, "Détecter les mines pour son Humain");
     }
 }
 

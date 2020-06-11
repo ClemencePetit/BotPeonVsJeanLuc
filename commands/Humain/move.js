@@ -38,7 +38,7 @@ module.exports = {
                             message.channel.send("Tu dois indiquer une position valide !");
                         } else {
                             let action = player.DoMove(direction);
-                            Utils.HandlePlayerAction(action, message.channel);
+                            Utils.HandlePlayerAction(player, action, message.channel);
                         }
                     }
 

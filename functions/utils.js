@@ -122,7 +122,7 @@ class Utils {
     }
 
     // Prints according messages when player just realize its action.
-    static HandlePlayerAction(action, channel) {
+    static HandlePlayerAction(player, action, channel) {
         if (action) {
             channel.send("Action " + "\" " + action.ToString() + " \" correctement ajoutée dans la liste d'actions !");
 

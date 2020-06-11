@@ -16,7 +16,7 @@ module.exports = {
 
                 if (player.CanMine()) {
                     let action = player.DoMine();
-                    Utils.HandlePlayerAction(action, message.channel);
+                    Utils.HandlePlayerAction(player, action, message.channel);
                 } else {
                     message.channel.send("Tu n'as plus assez de points d'actions.");
                 }

@@ -1,16 +1,17 @@
 const Actions = require("./Actions.js");
-
-const NB_ACTION_SLOTS = 4;
+const GameParams = require("./GameParams.js");
 
 module.exports = class Player {
 
 
-    constructor() {
+    constructor(name) {
         this.m_isActionsOver = false;
         this.m_isTurnOver = false;
 
         this.m_currentActionSlot = 0;
-        this.m_actionSlots = new Array(NB_ACTION_SLOTS);
+        this.m_actionSlots = new Array(GameParams.NbActionSlots);
+
+        this.m_name = name;
 
         return this;
     }
@@ -19,8 +20,12 @@ module.exports = class Player {
         return this.m_actionSlots;
     }
 
+    get Name() {
+        return this.m_name;
+    }
+
     IsActionSlotsFull() {
-        return this.m_actionSlots.length === NB_ACTION_SLOTS;
+        return this.m_currentActionSlot >= this.m_actionSlots.length;
     }
 
     IsActionsOver() {
@@ -47,10 +52,6 @@ module.exports = class Player {
         return false;
     }
 
-    Wait() {
-        this.AddAction(new Actions.Wait());
-    }
-
     ValidActions() {
         if (!this.m_isTurnOver) {
             this.m_isActionsOver = true;
@@ -67,7 +68,7 @@ module.exports = class Player {
         }
 
         this.m_isActionsOver = false;
-        this.m_actionSlots = new Array(NB_ACTION_SLOTS);
+        this.m_actionSlots = new Array(GameParams.NbActionSlots);
 
         this.m_currentActionSlot = 0;
 
@@ -79,11 +80,20 @@ module.exports = class Player {
     }
 
     StartTurn() {
-        this.m_actionSlots = new Array(NB_ACTION_SLOTS);
+        this.m_actionSlots = new Array(GameParams.NbActionSlots);
 
         this.m_isActionsOver = false;
         this.m_isTurnOver = false;
 
         this.m_currentActionSlot = 0;
     }
-}
+
+    DoWait() {
+        let action = new Actions.Wait();
+        if (this.AddAction(action)) {
+            return action;
+        }
+        return null;
+    }
+
+};

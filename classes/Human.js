@@ -4,8 +4,8 @@ const Player = require("./Player.js");
 const Actions = require("./Actions");
 
 module.exports = class Human extends Player {
-    constructor() {
-        super();
+    constructor(name) {
+        super(name);
 
         this.m_currentPA = GameParams.HumanPA;
         this.m_stunDuration = 0; // number of turn the human will be stun
@@ -54,7 +54,7 @@ module.exports = class Human extends Player {
     DoMove(direction) {
         if (this.CanMove()) {
             let action = new Actions.Move(direction);
-            if (super.AddAction(action)){
+            if (super.AddAction(action)) {
 
                 this.m_currentPA -= GameParams.HumanMovementCost;
                 return action;
