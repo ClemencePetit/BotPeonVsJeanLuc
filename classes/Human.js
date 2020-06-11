@@ -1,6 +1,8 @@
 const GameParams = require("./GameParams.js");
 const Player = require("./Player.js");
 
+const Actions = require("./Actions");
+
 module.exports = class Human extends Player {
     constructor() {
         super();
@@ -24,26 +26,6 @@ module.exports = class Human extends Player {
         return this.m_shieldDuration;
     }
 
-    get Position() {
-        return this.m_position;
-    }
-
-    set ShieldDuration(value) {
-        this.m_shieldDuration = value;
-    }
-
-    set StunDuration(value) {
-        this.m_stunDuration = value;
-    }
-
-    set CurrentPA(value) {
-        this.m_currentPA = value;
-    }
-
-    set Position(value) {
-        this.m_position = value;
-    }
-
     CanMine() {
         return (this.m_currentPA >= GameParams.HumanDeployMine);
     }
@@ -57,16 +39,27 @@ module.exports = class Human extends Player {
     }
 
     DoMine() {
+        if (this.CanMine()) {
+            this.m_currentPA -= GameParams.HumanDeployMine;
 
-        this.m_currentPA -= GameParams.HumanDeployMine;
+            super.AddAction(new Actions.Mine());
+        }
     }
 
-    DoMove() {
-        this.m_currentPA -= GameParams.HumanMovementCost;
+    DoMove(direction) {
+        if (this.CanMove()) {
+            this.m_currentPA -= GameParams.HumanMovementCost;
+
+            super.AddAction(new Actions.Move(direction));
+        }
     }
 
-    DoWall() {
-        this.m_currentPA -= GameParams.HumanPlaceWall;
+    DoWall(direction) {
+        if (this.CanWall()) {
+            this.m_currentPA -= GameParams.HumanPlaceWall;
+
+            super.AddAction(new Actions.Wall(direction));
+        }
     }
 
     CancelActions() {

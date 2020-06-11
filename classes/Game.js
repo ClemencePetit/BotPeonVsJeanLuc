@@ -4,7 +4,7 @@ const Human = require("./Human.js");
 const TurnType = {
     HUMAN: 0,
     GOD: 1,
-}
+};
 
 module.exports = class Game {
 
