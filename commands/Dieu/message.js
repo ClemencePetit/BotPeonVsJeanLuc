@@ -1,39 +1,29 @@
-let botData = require("../../BotData.js");
-const Game = require("../../classes/Game.js");
 const Utils = require("../../functions/utils").Utils;
 
 // Divine message power
 module.exports = {
-	name: 'message',
-	description: 'Apply stun in a range of 1 case around a random case',
-	execute(DemiurgeBot, message, arguments){
-		if(message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu")).length>0/*&&(message.channel.name==="dieu-peon"||message.channel.name==="dieu-jean-luc") condition de test du channel, a remettre plus tard*/) {
-			let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
-		
-			// Test if a game is running
-			if(PVSJL && PVSJL.running){
-				let player;
-				if(message.channel.name==="dieu-peon"){
-					player=PVSJL.game.GodTeamA;
-				}
-				else if(message.channel.name==="dieu-jean-luc"){
-					player=PVSJL.game.GodTeamB;
-				}
-				
-				if(player.canDivineOrder()){
-					
-					const ligne=Math.floor(Math.random() * Math.floor(9))+1;
-					const colonne="abcdefghijklmn".charAt(Math.floor(Math.random() * Math.floor(14)));
-					//tester si c'est dans une des bases
-					player.useDivineOrderCD();
-					player.AddAction("Message divin envoyé en "+colonne+ligne);
-					message.channel.send("Ton message divin est envoyé.");
-				}
-				else{
-					message.channel.send("Saviez-vous qu'on disait 'Le Foudre' pour parler de l'arme de Zeus? En tout cas, vous n'avez pas pu utiliser le votre.");
-				}
-			}
-		}
-	},
+    name: 'message',
+    description: 'Apply stun in a range of 1 case around a random case',
+    execute(DemiurgeBot, message, arguments) {
+        let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
+
+        // Test if a game is running
+        if (PVSJL && PVSJL.running) {
+
+            let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message, Utils.PLAYER_TYPE.GOD_ONLY);
+            if (Utils.CanPlayerMakeAction(player, message.channel)) {
+
+                if (player.CanDivineOrder()) {
+                    let action = player.DoDivineOrder();
+                    Utils.HandlePlayerAction(player, action, message.channel);
+                } else {
+                    message.channel.send("Saviez-vous qu'on disait 'Le Foudre' pour parler de l'arme de Zeus? En tout cas, vous ne pouvez pas utiliser le votre maintenant.");
+                }
+            }
+        }
+
+    },
 };
 
+//const ligne=Math.floor(Math.random() * Math.floor(9))+1;
+//const colonne="abcdefghijklmn".charAt(Math.floor(Math.random() * Math.floor(14)));

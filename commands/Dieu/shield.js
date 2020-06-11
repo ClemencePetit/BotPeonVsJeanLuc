@@ -12,40 +12,17 @@ module.exports = {
 
         // Test if a game is running
         if (PVSJL && PVSJL.running) {
-            if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu")).length > 0) {
-                let player;
-                let human;
-                if (message.channel.name === "dieu-peon" && message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu-Peon")).length > 0) {
-                    player = PVSJL.game.GodTeamA;
-                    human = PVSJL.game.HumanTeamA;
-                } else if (message.channel.name === "dieu-jean-luc" && message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu-Jean-Luc")).length > 0) {
-                    player = PVSJL.game.GodTeamB;
-                    human = PVSJL.game.HumanTeamB;
-                } else {
-                    message.channel.send("Tu n\'es pas au bon endroit");
-                }
-                if (player) {
+            let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message, Utils.PLAYER_TYPE.GOD_ONLY);
+            if (Utils.CanPlayerMakeAction(player, message.channel)) {
 
-                    if (player.CanMakeActions) {
+                if (player.CanShield()) {
 
-                        if (player.canShield()) {
-                            //ON SHIELD ICI
-                            message.channel.send("Tu protèges ton humain");
-                            player.AddAction("protège son humain");
-                            player.useShieldCD();
-                            // /!\ à potentiellement enlever cette ligne en cas de changement de la structure du bot
-                            human.ShieldDuration = GameParams.GodShieldDuration;
-                        } else {
-                            message.channel.send("Le cooldown n\'est pas fini, encore " + player.ShieldCD + " tours!");
-                        }
-                    } else {
-                        message.channel.send("Tu ne peux plus réaliser d'action, ton tour est fini!");
-                    }
+                    let action = player.DOShield(position);
+                    Utils.HandlePlayerAction(player, action, message.channel);
 
                 } else {
-                    console.log("mauvais endroit");
+                    message.channel.send("Un peu de patience. Tu pourras lancer un bouclier dans " + player.ShieldCD + " tour(s) !");
                 }
-
             }
         }
     },

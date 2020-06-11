@@ -1,6 +1,4 @@
-const GameParams = require("../classes/GameParams.js");
-let botData = require("../BotData.js");
-const Player = require("../classes/Player.js");
+const Utils = require("../functions/utils").Utils;
 
 module.exports =
     {
@@ -15,54 +13,28 @@ module.exports =
                 if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Demiurge")).length === 0) // Player
                 {
                     // Getting message's player
-                    let player;
-                    if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Humain-Peon")).length !== 0) // HumanA
-                    {
-                        player = PVSJL.game.HumanTeamA;
-                    } else if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Humain-Jean-Luc")).length !== 0) //HumanB
-                    {
-                        player = PVSJL.game.HumanTeamB;
-                    } else if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu-Peon")).length !== 0) //GodA
-                    {
-                        player = PVSJL.game.GodTeamA;
-                    } else //GodB
-                    {
-                        player = PVSJL.game.GodTeamB;
-                    }
-
-                    // Getting player's actions
-                    let actions_msg = "";
-                    player.Actions.forEach(action => {
-                        actions_msg += "- " + action + "\n";
-                    });
+                    let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message);
 
                     // Displaying actions
-                    message.channel.send("Durant ce tour, tu as réalisé les actions suivantes:\n" + actions_msg);
+                    message.channel.send("Durant ce tour, tu as réalisé les actions suivantes:\n" + Utils.GetPlayerActionsString(player));
                 } else {
+
                     // Getting each player's actions
                     let player = PVSJL.game.HumanTeamA;
-                    let actions_msg = "\n Joueur Humain-Peon:\n";
-                    player.Actions.forEach(action => {
-                        actions_msg += "- " + action + "\n";
-                    });
+                    let actions_msg = "\nJoueur Humain-Peon:\n";
+                    actions_msg += Utils.GetPlayerActionsString(player);
 
                     player = PVSJL.game.GodTeamA;
                     actions_msg += "\nJoueur Dieu-Peon:\n";
-                    player.Actions.forEach(action => {
-                        actions_msg += "- " + action + "\n";
-                    });
+                    actions_msg += Utils.GetPlayerActionsString(player);
 
                     player = PVSJL.game.HumanTeamB;
                     actions_msg += "\nJoueur Humain-Jean-Luc:\n";
-                    player.Actions.forEach(action => {
-                        actions_msg += "- " + action + "\n";
-                    });
+                    actions_msg += Utils.GetPlayerActionsString(player);
 
                     player = PVSJL.game.GodTeamB;
                     actions_msg += "\nJoueur Dieu-Jean-Luc:\n";
-                    player.Actions.forEach(action => {
-                        actions_msg += "- " + action + "\n";
-                    });
+                    actions_msg += Utils.GetPlayerActionsString(player);
 
                     // Displaying actions
                     message.channel.send("Durant ce tour, les joueurs ont réalisé les actions suivantes:\n" + actions_msg);

@@ -10,33 +10,28 @@ module.exports = {
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
+
         // Test if a game is running
         if (PVSJL && PVSJL.running) {
             let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message, Utils.PLAYER_TYPE.GOD_ONLY);
-            if (player) {
+            if (Utils.CanPlayerMakeAction(player, message.channel)) {
 
-                if (player.CanMakeActions) {
+                if (player.CanAOEStun()) {
 
-                    //faut tester le cooldown de l'action
-                    if (player.canAOEStun()) {
-                        if (arguments.length === 0) {
-                            message.channel.send("Tu dois indiquer où jeter le stun.");
-                        } else if (arguments[0].match(/^[a-n][1-9]$/i)) {
-                            message.channel.send("Tu jetes un stun en " + arguments[0]);
-                            player.AddAction("Stun en " + arguments[0]);
-                            player.useAOEStunCD();
-                        } else {
-                            message.channel.send("Tu dois indiquer un positionnement valide.");
-                        }
+                    let position = arguments[0];
+                    if (arguments.length === 0) {
+                        message.channel.send("Tu dois indiquer où jeter le stun.");
+                    } else if (position.match(/^[a-n][1-9]$/i)) {
+                        let action = player.DOAOEStun(position);
+                        Utils.HandlePlayerAction(player, action, message.channel);
                     } else {
-                        message.channel.send("Pas encore! Encore " + player.AOEStunCD + " tours");
+                        message.channel.send("Tu dois indiquer un positionnement valide.");
                     }
                 } else {
-                    message.channel.send("Tu ne peux plus réaliser d'action, ton tour est fini!");
+                    message.channel.send("Un peu de patience. Tu pourras lancer un éclair dans " + player.AOEStunCD + " tour(s) !");
                 }
             }
         }
-
 
         /*
                 let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);

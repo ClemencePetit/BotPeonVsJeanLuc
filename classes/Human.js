@@ -1,9 +1,11 @@
 const GameParams = require("./GameParams.js");
 const Player = require("./Player.js");
 
+const Actions = require("./Actions");
+
 module.exports = class Human extends Player {
-    constructor() {
-        super();
+    constructor(name) {
+        super(name);
 
         this.m_currentPA = GameParams.HumanPA;
         this.m_stunDuration = 0; // number of turn the human will be stun
@@ -24,26 +26,6 @@ module.exports = class Human extends Player {
         return this.m_shieldDuration;
     }
 
-    get Position() {
-        return this.m_position;
-    }
-
-    set ShieldDuration(value) {
-        this.m_shieldDuration = value;
-    }
-
-    set StunDuration(value) {
-        this.m_stunDuration = value;
-    }
-
-    set CurrentPA(value) {
-        this.m_currentPA = value;
-    }
-
-    set Position(value) {
-        this.m_position = value;
-    }
-
     CanMine() {
         return (this.m_currentPA >= GameParams.HumanDeployMine);
     }
@@ -57,16 +39,42 @@ module.exports = class Human extends Player {
     }
 
     DoMine() {
+        if (this.CanMine()) {
+            let action = new Actions.Mine();
+            if (super.AddAction(action)) {
 
-        this.m_currentPA -= GameParams.HumanDeployMine;
+                this.m_currentPA -= GameParams.HumanDeployMine;
+                return action;
+            }
+        }
+
+        return null;
     }
 
-    DoMove() {
-        this.m_currentPA -= GameParams.HumanMovementCost;
+    DoMove(direction) {
+        if (this.CanMove()) {
+            let action = new Actions.Move(direction);
+            if (super.AddAction(action)) {
+
+                this.m_currentPA -= GameParams.HumanMovementCost;
+                return action;
+            }
+        }
+
+        return null;
     }
 
-    DoWall() {
-        this.m_currentPA -= GameParams.HumanPlaceWall;
+    DoWall(direction) {
+        if (this.CanWall()) {
+            let action = new Actions.Wall(direction);
+            if (super.AddAction(action)) {
+
+                this.m_currentPA -= GameParams.HumanPlaceWall;
+                return action;
+            }
+        }
+
+        return null;
     }
 
     CancelActions() {

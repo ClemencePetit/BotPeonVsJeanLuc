@@ -1,30 +1,55 @@
+const Actions = require("./Actions.js");
+const GameParams = require("./GameParams.js");
+
 module.exports = class Player {
-    constructor() {
-        this.m_actions = [];
+
+
+    constructor(name) {
         this.m_isActionsOver = false;
         this.m_isTurnOver = false;
+
+        this.m_currentActionSlot = 0;
+        this.m_actionSlots = new Array(GameParams.NbActionSlots);
+
+        this.m_name = name;
 
         return this;
     }
 
-    get Actions() {
-        return this.m_actions;
+    get ActionSlots() {
+        return this.m_actionSlots;
     }
 
-    get IsActionsOver() {
+    get Name() {
+        return this.m_name;
+    }
+
+    IsActionSlotsFull() {
+        return this.m_currentActionSlot >= this.m_actionSlots.length;
+    }
+
+    IsActionsOver() {
         return this.m_isActionsOver;
     }
 
-    get IsTurnOver() {
+    IsTurnOver() {
         return this.m_isTurnOver;
     }
 
-    get CanMakeActions() {
-        return !this.m_isTurnOver;
+    CanMakeActions() {
+        return this.m_currentActionSlot < this.m_actionSlots.length;
     }
 
     AddAction(action) {
-        this.m_actions.push(action);
+        if (this.m_currentActionSlot < this.m_actionSlots.length) {
+
+            this.m_actionSlots[this.m_currentActionSlot] = action;
+            this.m_currentActionSlot++;
+
+            return true;
+        }
+
+        return false;
     }
 
     ValidActions() {
@@ -43,7 +68,9 @@ module.exports = class Player {
         }
 
         this.m_isActionsOver = false;
-		this.m_actions = [];
+        this.m_actionSlots = new Array(GameParams.NbActionSlots);
+
+        this.m_currentActionSlot = 0;
 
         return true;
     }
@@ -53,9 +80,20 @@ module.exports = class Player {
     }
 
     StartTurn() {
-        this.m_actions = [];
+        this.m_actionSlots = new Array(GameParams.NbActionSlots);
 
         this.m_isActionsOver = false;
         this.m_isTurnOver = false;
+
+        this.m_currentActionSlot = 0;
     }
-}
+
+    DoWait() {
+        let action = new Actions.Wait();
+        if (this.AddAction(action)) {
+            return action;
+        }
+        return null;
+    }
+
+};

@@ -1,9 +1,10 @@
 const GameParams = require("./GameParams.js");
 const Player = require("./Player.js");
+const Actions = require("./Actions.js");
 
 module.exports = class God extends Player {
-    constructor() {
-        super();
+    constructor(name) {
+        super(name);
         this.m_shieldCD = 0;
         this.m_AOEStunCD = 0;
         this.m_mineVisionCD = 0;
@@ -33,72 +34,112 @@ module.exports = class God extends Player {
         return this.m_divineOrderCD;
     }
 
-    useShieldCD() {
-        this.m_shieldCD = GameParams.GodShielCD;
+    DOShield() {
+        if (this.CanShield()) {
+            let action = new Actions.Shield();
+            if (super.AddAction(action)) {
+                this.m_shieldCD = GameParams.GodShielCD;
+                return action;
+            }
+        }
+        return null;
     }
 
-    useAOEStunCD() {
-        this.m_AOEStunCD = GameParams.GodAOEStunCD;
+    DOAOEStun(position) {
+
+        if (this.CanAOEStun()) {
+            let action = new Actions.Stun(position);
+            if (super.AddAction(action)) {
+                this.m_AOEStunCD = GameParams.GodAOEStunCD;
+                return action;
+            }
+        }
+        return null;
     }
 
-    useMineVisionCD() {
+    DoMineVision() {
 
-        this.m_mineVisionCD = GameParams.GodMineVisionCD;
+        if (this.CanMineVision()) {
+            let action = new Actions.Vision();
+            if (super.AddAction(action)) {
+
+                this.m_mineVisionCD = GameParams.GodMineVisionCD;
+                return action;
+            }
+        }
+
+        return null;
     }
 
-    useTPPortalCD() {
+    DoTPPortal(position_1, position_2) {
 
-        this.m_TPPortalCD = GameParams.GodTPPortalCD;
+        if (this.CanTPPortal()) {
+            let action = new Actions.Portal(position_1, position_2);
+            if (super.AddAction(action)) {
+
+                this.m_TPPortalCD = GameParams.GodTPPortalCD;
+                return action;
+            }
+        }
+
+        return null;
     }
 
-    useDivineOrderCD() {
-        this.m_divineOrderCD = GameParams.DivineOrderCD;
+    DoDivineOrder() {
+        if (this.CanDivineOrder()) {
+            let action = new Actions.Message();
+            if (super.AddAction(action)) {
+                this.m_divineOrderCD = GameParams.DivineOrderCD;
+                return action;
+            }
+        }
+        return null;
     }
 
-    canShield() {
+    CanShield() {
         return this.m_shieldCD === 0;
     }
 
-    canAOEStun() {
+    CanAOEStun() {
         return this.m_AOEStunCD === 0;
     }
 
-    canMineVision() {
+    CanMineVision() {
 
         return this.m_mineVisionCD === 0;
     }
 
-    canTPPortal() {
+    CanTPPortal() {
 
         return this.m_TPPortalCD === 0;
     }
 
-    canDivineOrder() {
+    CanDivineOrder() {
         return this.m_divineOrderCD === 0;
     }
 
     CancelActions() {
-         if (super.CancelActions()) {
-             if (this.m_shieldCD === GameParams.GodShielCD) {
-                 this.m_shieldCD = 0;
-             }
-             if (this.m_AOEStunCD === GameParams.GodAOEStunCD) {
-                 this.m_AOEStunCD = 0;
-             }
-             if (this.m_mineVisionCD === GameParams.GodMineVisionCD) {
-                 this.m_mineVisionCD = 0;
-             }
-             if (this.m_TPPortalCD === GameParams.GodTPPortalCD) {
-                 this.m_TPPortalCD = 0;
-             }
-             if (this.m_divineOrderCD === GameParams.DivineOrderCD) {
-                 this.m_divineOrderCD = 0;
-             }
+        if (super.CancelActions()) {
+            if (this.m_shieldCD === GameParams.GodShielCD) {
+                this.m_shieldCD = 0;
+            }
+            if (this.m_AOEStunCD === GameParams.GodAOEStunCD) {
+                this.m_AOEStunCD = 0;
+            }
+            if (this.m_mineVisionCD === GameParams.GodMineVisionCD) {
+                this.m_mineVisionCD = 0;
+            }
+            if (this.m_TPPortalCD === GameParams.GodTPPortalCD) {
+                this.m_TPPortalCD = 0;
+            }
+            if (this.m_divineOrderCD === GameParams.DivineOrderCD) {
+                this.m_divineOrderCD = 0;
+            }
 
-             return true;
-         }
+            return true;
+        }
 
-         return false;
+        return false;
     }
 
     StartTurn() {

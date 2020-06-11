@@ -16,7 +16,7 @@ module.exports = {
                 message.channel.send("Tu viens d'annuler toutes tes actions pour ce tour !");
 
                 // Send to admin channel that the player just canceled its turn !
-                Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient d'annuler ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/2");
+                Utils.PrintStringToAdminChannel(DemiurgeBot, message.channel.name + " vient d'annuler ses actions ! Nombre de joueurs prêts : " + PVSJL.game.NumberPlayersReady + "/4");
             } else {
                 message.channel.send("Impossible d'annuler tes actions, ton tour est fini !");
             }
