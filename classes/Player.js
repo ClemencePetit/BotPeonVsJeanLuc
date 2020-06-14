@@ -28,6 +28,10 @@ module.exports = class Player {
         return this.m_currentActionSlot >= this.m_actionSlots.length;
     }
 
+    NumberOfEmptyActionSlots() {
+        return this.m_actionSlots.length - this.m_currentActionSlot;
+    }
+
     IsActionsOver() {
         return this.m_isActionsOver;
     }

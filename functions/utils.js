@@ -128,9 +128,11 @@ class Utils {
 
             if (player.IsActionSlotsFull()) {
                 channel.send("Tu as défini toutes tes actions pour ce tour, fais !done pour confirmer.");
+            } else {
+                channel.send("Il te reste encore " + player.NumberOfEmptyActionSlots() + " action(s) à définir!");
             }
         } else {
-            channel.send("Erreur dans l'ajout de l'action (contacter les développeurs).");
+            channel.send("Erreur dans l'ajout de l'action (contacter les gentils développeurs).");
         }
     }
 }
