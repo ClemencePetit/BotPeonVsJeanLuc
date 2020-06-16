@@ -154,7 +154,6 @@ class Utils {
 
             if (!isMsgEmoteAllowed)
             {
-                message.channel.send("Ta prière contient des emojis interdit !");
                 return false;
 			}
 		}
