@@ -1,6 +1,6 @@
 const Utils = require("../../functions/utils").Utils;
 
-// pray power
+// pray power!
 module.exports = {
     name: 'order',
     description: 'Send an order to your human. Write !order emote1 emote2... You can only use emotes starting by \"PJL_\"',
@@ -15,7 +15,7 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("Tu dois indiquer quel ordre tu souhaites envoyer à ton humain. Utilises les emotes commençant pas \"JPL_\" et sépares les d'un espace.");  
+            message.channel.send("Tu dois indiquer quel ordre tu souhaites envoyer Ã  ton humain. Utilises les emotes commenÃ§ant pas \"JPL_\" et sÃ©pare les d'un espace.");  
             return;
 		}
 
@@ -36,14 +36,14 @@ module.exports = {
             // Check if player didnt already communicate this turn
             if (!player.CanCommunicate) 
             {
-                message.channel.send("Tu as déjà envoyé un ordre à ce tour.");  
+                message.channel.send("Tu as dÃ©jÃ  envoyÃ© un ordre Ã  ce tour.");  
                 return;     
 			}
 
             // Checking if the msg emotes are allowed
             if (!Utils.CheckIfEmotesAreAllowed(message, arguments))
             {
-                message.channel.send("Ton ordre contient des emojis interdit !");
+                message.channel.send("Ton ordre contient des emojis interdits !");
                 return;
 		    }
 
@@ -59,7 +59,7 @@ module.exports = {
             } 
 
             // Creating message to send
-            let msg = "Tu as reçu l'ordre divin suivant: ";
+            let msg = "Ton Dieu t'ordonnes : ";
             arguments.forEach(emote => 
             { 
                     msg += emote + " ";
@@ -67,12 +67,12 @@ module.exports = {
 	
             // Send the order and update player status
             channel.send(msg);
-            message.channel.send("Ton ordre a bien été envoyée.")
+            message.channel.send("Ton ordre a bien Ã©tÃ© envoyÃ©.")
             player.CanCommunicate = false;
         }
         else
         {
-            message.channel.send("Seul les dieux peuvent envoyer des ordres.");  
+            message.channel.send("Seuls les dieux peuvent envoyer des ordres.");  
 		}
     },
 };
