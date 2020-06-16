@@ -135,6 +135,32 @@ class Utils {
             channel.send("Erreur dans l'ajout de l'action (contacter les gentils développeurs).");
         }
     }
+
+    // Check if the given args match with the allowed emojis of the server
+    static CheckIfEmotesAreAllowed(message, args)
+    {
+        const allowedEmotes = message.guild.emojis.cache;
+        for (let argumentsIndex = 0; argumentsIndex < args.length; ++argumentsIndex)
+        {
+            const msgEmote = args[argumentsIndex].split('').join('');   
+            let isMsgEmoteAllowed = false;
+            allowedEmotes.each(emote =>
+			{
+                if (emote.toString() === msgEmote)
+                {
+                    isMsgEmoteAllowed = true; 
+				}
+			});
+
+            if (!isMsgEmoteAllowed)
+            {
+                message.channel.send("Ta prière contient des emojis interdit !");
+                return false;
+			}
+		}
+
+        return true;
+    }
 }
 
 Utils.PLAYER_TYPE = PLAYER_TYPE;

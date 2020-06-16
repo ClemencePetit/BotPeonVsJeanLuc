@@ -1,7 +1,7 @@
 module.exports = class GameParams
 {
 	// Players' Params
-	static get NbActionSlots() { return 4; }
+	static get NbActionSlots() { return 4; };
 
 	// Humans' Params
 	static get HumanPA() { return 4; };
