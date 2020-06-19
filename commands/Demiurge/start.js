@@ -26,22 +26,24 @@ module.exports = {
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
 
-                message.channel.send(message.author.username + " choisit de démarrer une partie.");
+                message.channel.send(message.author.username + " m'a invoqué, moi, Démiurge Intangible du Jeu.");
                 PVSJL.running = true;
 
                 PVSJL.game.StartGame();
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
 
-                Utils.PrintStringToAllChannels(DemiurgeBot, "===== DEBUT D'UNE NOUVELLE PARTIE =====");
-                Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
+                Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serais maître de votre partie.");
+                Utils.PrintStringToAllChannels(DemiurgeBot, "Je vous prierai d'être poli et de commencer toutes vos phrases par **!** qui veut dire *s'il vous plait* en théludolique. Merci.");
+                Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi help. *!help* bien entendu.");
+                //Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
 
             } else {
-                message.channel.send("Tu n\'as pas l\'autorisation de démarrer une partie.");
+                message.channel.send("L'invocation du Démiurge Intangible du Jeu ne peut être procédée que par des êtres eceptionnels.");
             }
 
         } else {
-            message.channel.send("Une partie est déjà en cours");
+            message.channel.send("Le Démiurge Intangible du Jeu répondra à votre requête plus tard.");
         }
 
     },
