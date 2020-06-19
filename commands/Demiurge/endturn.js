@@ -17,7 +17,7 @@ module.exports = {
 
                 if (PVSJL.game.EndTurn()) {
 
-                    Utils.PrintStringToAllChannels(DemiurgeBot, "== TOUR FINI ! (le modo va répercuter les actions) ==");
+                    Utils.PrintStringToAllChannels(DemiurgeBot, "Les conséquences de cette journée seront-elles mémorables? Nous contactons les Démiurges présents sur place.");
 
                     let actions = PVSJL.game.GetOrderedActionsFromPlayers();
                     let actions_msg = "";
@@ -39,10 +39,10 @@ module.exports = {
                     Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs ont réalisé les actions suivantes : \n" + actions_msg);
                 } else {
 
-                    Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs n'ont pas tous fini leurs actions !");
+                    Utils.PrintStringToAdminChannel(DemiurgeBot, "Hophophop, tout le monde n'a pas fini sa journée de travail. ");
                 }
             } else {
-                message.channel.send("Tu n\'as pas l\'autorisation de terminer le tour en cours.");
+                message.channel.send("Seuls les êtres supérieurs décrètent la fin de journée. Toi non.");
             }
 
         }

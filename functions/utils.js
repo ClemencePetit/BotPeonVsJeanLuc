@@ -98,6 +98,15 @@ class Utils {
         }
     }
 
+	static PrintToAll(DemiurgeBot, message, content) {
+
+        let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
+        if (PVSJL && PVSJL.running && PVSJL.game) {
+
+            Utils.PrintStringToAllChannels(DemiurgeBot, content);
+        }
+    }
+	
     // Determine if the player can make an action (is the turn over ?) and prints according message
     static CanPlayerMakeAction(player, channel) {
 
@@ -124,15 +133,15 @@ class Utils {
     // Prints according messages when player just realize its action.
     static HandlePlayerAction(player, action, channel) {
         if (action) {
-            channel.send("Action " + "\" " + action.ToString() + " \" correctement ajoutée dans la liste d'actions !");
+            channel.send("J'accepte d'ajouter ton " + "\" " + action.ToString() + " \" à ta la liste d'actions.");
 
             if (player.IsActionSlotsFull()) {
-                channel.send("Tu as défini toutes tes actions pour ce tour, fais !done pour confirmer.");
+                channel.send("Wow wow ça suffit. Plus d'actions pour toi ce tour là. dis moi *done* pour confirmer, et dis moi *cancel* pour annuler. De manière polie bien entendu.");
             } else {
-                channel.send("Il te reste encore " + player.NumberOfEmptyActionSlots() + " action(s) à définir!");
+                channel.send("Et puis?");
             }
         } else {
-            channel.send("Erreur dans l'ajout de l'action (contacter les gentils développeurs).");
+            channel.send("Mon pouvoir a failli...Il te faudra prier d'autres démiurge pour dénouer ta situation.");
         }
     }
 

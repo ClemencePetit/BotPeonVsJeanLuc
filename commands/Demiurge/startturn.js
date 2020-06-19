@@ -15,21 +15,22 @@ module.exports = {
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
 
                 PVSJL.game.StartTurn();
-                Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
+				Utils.PrintToAll(DemiurgeBot,message, "Un jour de plus. Au travail.");
+                //Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
 				if(PVSJL.game.GetCurrentTurnType==1)
 				{
 					if(PVSJL.game.GodTeamA.TPPortalCD==2)
 					{
-						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Péon se ferment.");
+						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Péon se referment.");
 					}
 					if(PVSJL.game.GodTeamA.TPPortalCD==2)
 					{
-						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Jean-Luc se ferment.");
+						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Jean-Luc se referment.");
 					}
 				}
 
             } else {
-                message.channel.send("Tu n\'as pas l\'autorisation de démarrer un nouveau tour.");
+                message.channel.send("Pour qui te prends-tu? Seuls des êtres supérieurs peuvent démarrer une nouvelle journée.");
             }
 
         }
