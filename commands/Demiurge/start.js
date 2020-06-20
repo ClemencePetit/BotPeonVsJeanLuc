@@ -33,7 +33,7 @@ module.exports = {
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
 
-                Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serais maître de votre partie.");
+                Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serai maître de votre partie.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Je vous prierai d'être poli et de commencer toutes vos phrases par **!** qui veut dire *s'il vous plait* en théoludolique. Merci.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi help. *!help* bien entendu.");
                 //Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
