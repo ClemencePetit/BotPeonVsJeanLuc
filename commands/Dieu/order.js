@@ -15,7 +15,7 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("Tu dois indiquer quel ordre tu souhaites envoyer à ton humain. Utilises les emotes commençant pas \"JPL_\" et sépare les d'un espace.");  
+            message.channel.send("Quitte à dire quelquechose, essaye au moins de dire quelquechose...");  
             return;
 		}
 
@@ -36,14 +36,14 @@ module.exports = {
             // Check if player didnt already communicate this turn
             if (!player.CanCommunicate) 
             {
-                message.channel.send("Tu as déjà envoyé un ordre à ce tour.");  
+                message.channel.send("Je transmettrai pas cet ordre. Pas aujourd'hui en tout cas.");  
                 return;     
 			}
 
             // Checking if the msg emotes are allowed
             if (!Utils.CheckIfEmotesAreAllowed(message, arguments))
             {
-                message.channel.send("Ton ordre contient des emojis interdits !");
+                message.channel.send("Ton ordre contient des emojis interdits. Fais un effort et écrit bien avec les emojis de ma terre natale.");
                 return;
 		    }
 
@@ -59,7 +59,7 @@ module.exports = {
             } 
 
             // Creating message to send
-            let msg = "Ton Dieu t'ordonnes : ";
+            let msg = "Ton Dieu t'envoit une vision : ";
             arguments.forEach(emote => 
             { 
                     msg += emote + " ";
@@ -67,7 +67,7 @@ module.exports = {
 	
             // Send the order and update player status
             channel.send(msg);
-            message.channel.send("Ton ordre a bien été envoyé.")
+            message.channel.send("Que ton ordre soit transmis.")
             player.CanCommunicate = false;
         }
         else

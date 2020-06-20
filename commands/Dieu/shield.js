@@ -21,7 +21,7 @@ module.exports = {
                     Utils.HandlePlayerAction(player, action, message.channel);
 
                 } else {
-                    message.channel.send("Un peu de patience. Tu pourras lancer un bouclier dans " + player.ShieldCD + " tour(s) !");
+                    message.channel.send("Un peu de patience! Je te donne encore " + player.ShieldCD + " jours avant de pouvoir recréer un bouclier.");
                 }
             }
         }

@@ -20,15 +20,15 @@ module.exports = {
 
                     let position = arguments[0];
                     if (arguments.length === 0) {
-                        message.channel.send("Tu dois indiquer où jeter le stun.");
+                        message.channel.send("Certes. Mais où?");
                     } else if (position.match(/^[a-n][1-9]$/i)) {
                         let action = player.DOAOEStun(position);
                         Utils.HandlePlayerAction(player, action, message.channel);
                     } else {
-                        message.channel.send("Tu dois indiquer un positionnement valide.");
+                        message.channel.send("Euuuh c'est où ça?");
                     }
                 } else {
-                    message.channel.send("Un peu de patience. Tu pourras lancer un éclair dans " + player.AOEStunCD + " tour(s) !");
+                    message.channel.send("Attends encore  " + player.AOEStunCD + " jours. Eh oui.");
                 }
             }
         }

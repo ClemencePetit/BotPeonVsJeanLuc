@@ -20,7 +20,7 @@ module.exports = {
                     let action = player.DoMineVision();
                     Utils.HandlePlayerAction(player, action, message.channel);
                 } else {
-                    message.channel.send("Un peu de patience. Tu pourras détecter les mines dans " + player.MineVisionCD + " tour(s) !");
+                    message.channel.send("Tes éclaireurs divins pourront repartir dans " + player.MineVisionCD + " jours.");
                 }
             }
         }

@@ -19,7 +19,7 @@ module.exports = {
 
                     if (arguments.length < 2) {
 
-                        message.channel.send("Tu dois indiquer où créer les portails.");
+                        message.channel.send("Certes, mais où?");
 
                     } else if (arguments[0].match(/^[a-n][1-9]$/i) && arguments[1].match(/^[a-n][1-9]$/i)) {
 
@@ -27,20 +27,20 @@ module.exports = {
                         let disRow = Math.abs(arguments[0].toLowerCase().charCodeAt(0) - arguments[1].toLowerCase().charCodeAt(0));
                         let disLine = Math.abs(parseInt(arguments[0][1]) - parseInt(arguments[1][1]));
                         let maxDis = GameParams.GodTPPortalMaxDistance;
-                        if ((disRow + disLine) <= maxDis + 1) {
+                        if ((disRow + disLine) <= maxDis) {
 
-                            // WE CAN PLACE AN PORTAL
-                            let action = player.DoTPPortal(position);
+                            // WE CAN PLACE A PORTAL
+                            let action = player.DoTPPortal(arguments[0],arguments[1]);
                             Utils.HandlePlayerAction(player, action, message.channel);
                         } else {
                             message.channel.send("Tes portails sont trop éloignés! La distance maximale est de " + maxDis + " cases.");
                         }
                     } else {
-                        message.channel.send("Tu dois indiquer un positionnement valide.");
+                        message.channel.send("Tu dois indiquer un positionnement valide. Sinon pas de protails. Et oui.");
                     }
 
                 } else {
-                    message.channel.send("Un peu de patience. Tu pourras créer un portail dans " + player.TPPortalCD + " tour(s) !");
+                    message.channel.send("Le tissu de l'espace temps sera à nouveau conforme dans " + player.TPPortalCD + " jours.");
                 }
             }
         }
