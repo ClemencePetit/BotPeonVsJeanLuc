@@ -18,7 +18,7 @@ module.exports = {
                 if (player.CanMove()) {
 
                     if (arguments.length === 0) {
-                        message.channel.send("Tu dois indiquer la direction où aller.");
+                        message.channel.send("Certes, mais où?");
                     } else {
 
                         let direction = -1;
@@ -35,7 +35,7 @@ module.exports = {
                         }
 
                         if (direction === -1) {
-                            message.channel.send("Tu dois indiquer une position valide !");
+                            message.channel.send("Left?Right?Up?Down? C'est simple pourtant.");
                         } else {
                             let action = player.DoMove(direction);
                             Utils.HandlePlayerAction(player, action, message.channel);
@@ -43,7 +43,7 @@ module.exports = {
                     }
 
                 } else {
-                    message.channel.send("Tu n'as plus assez de points d'actions.");
+                    message.channel.send("T'es trop fatigué. Va te coucher.");
                 }
             }
         }

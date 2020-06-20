@@ -17,7 +17,7 @@ module.exports = {
                 if (player.CanWall()) {
 
                     if (arguments.length === 0) {
-                        message.channel.send("Tu dois indiquer la direction où poser le mur.");
+                        message.channel.send("Certes, mais où? Up? Down? Left? Right?");
                     } else {
 
                         let direction = -1;
@@ -34,7 +34,7 @@ module.exports = {
                         }
 
                         if (direction === -1) {
-                            message.channel.send("Tu dois indiquer une position valide !");
+                            message.channel.send("Je ne te comprends pas...");
                         } else {
                             let action = player.DoWall(direction);
                             Utils.HandlePlayerAction(player, action, message.channel);

@@ -15,7 +15,7 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("Tu dois indiquer quel message tu souhaites envoyer à ton dieu. Utilises les emotes commençant pas \"JPL_\" et sépares les d'un espace.");  
+            message.channel.send("C'est bien beau de prier si tu penses à rien...");  
             return;
 		}
 
@@ -36,14 +36,14 @@ module.exports = {
             // Check if player didnt already communicate this turn
             if (!player.CanCommunicate) 
             {
-                message.channel.send("Tu as déjà prié à ce tour.");  
+                message.channel.send("Une seule prière par jour. Désolé.");  
                 return;     
 			}
 
             // Checking if the msg emotes are allowed
             if (!Utils.CheckIfEmotesAreAllowed(message, arguments))
             {
-                message.channel.send("Ta prière contient des emojis interdit !");
+                message.channel.send("Ta prière contient des emojis interdit ! Bouh !");
                 return;
 		    }
 
@@ -59,7 +59,7 @@ module.exports = {
             } 
 
             // Creating message to send
-            let msg = "Tu as reçu la prière suivante: ";
+            let msg = "Une prière est monté jusqu'à toi : ";
             arguments.forEach(emote => 
             { 
                     msg += emote + " ";
@@ -67,7 +67,7 @@ module.exports = {
 	
             // Send the prayer and update player status
             channel.send(msg);
-            message.channel.send("Ta prière a bien été envoyée.")
+            message.channel.send("Ta prière a bien été priée.")
             player.CanCommunicate = false;
         }
         else
