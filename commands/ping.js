@@ -13,18 +13,18 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("Tu dois indiquer quel ping tu souhaites faire: \"attack\", \"defense\" ou \"taunt\".");  
+            message.channel.send("Je ne ferais passer que les messages suivants : \"attack\", \"defense\" ou \"taunt\".");  
             return;
 		}
         else if (arguments.length > 1)
         {
-            message.channel.send("Tu as indiqué trop de paramètres. Tu dois simplement indiquer quel ping tu souhaites faire: \"attack\", \"defense\" ou \"taunt\".");  
+            message.channel.send("Tu parles trop. Je ne ferais passer que les messages suivants : \"attack\", \"defense\" ou \"taunt\".");  
             return;   
 		}
 
         if (arguments[0] !== "defense" && arguments[0] !== "attack" && arguments[0] !== "taunt" )
         {
-            message.channel.send("Paramètre incorrect. Tu dois simplement indiquer quel ping tu souhaites faire: \"attack\", \"defense\" ou \"taunt\".");  
+            message.channel.send("Damn, c'est dur de te comprendre....Redit pour voir?");  
 		    return;
         }
 
@@ -93,7 +93,7 @@ module.exports = {
 				}
                 else //taunt
                 {
-                    pingMessage = "Une créature insignifiante suivant une religiant d'hérétique vous fait savoir son désir de vous anéantir !";
+                    pingMessage = "Une créature insignifiante suivant une religion d'hérétiques vous fait savoir son désir de vous anéantir !";
 				}
 			}
 
