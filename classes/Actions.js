@@ -1,11 +1,17 @@
 class Action {
-    constructor(priority, string) {
+
+    constructor(player, priority, string) {
         this.m_priority = priority;
         this.m_string = string;
+        this.m_player = player;
     }
 
     get Priority() {
         return this.m_priority;
+    }
+
+    DoAction() {
+
     }
 
     ToString() {
@@ -43,28 +49,28 @@ function DirectionToString(direction) {
 }
 
 class Wait extends Action {
-    constructor() {
-        super(-50, "Attendre la prochaine action.");
+    constructor(player) {
+        super(player, -50, "Attendre la prochaine action.");
     }
 }
 
 // ----------- HUMAN ACTIONS -----------
 
 class Mine extends Action {
-    constructor() {
-        super(2, "Poser une MINE");
+    constructor(player) {
+        super(player, 2, "Poser une MINE");
     }
 }
 
 class Move extends Action {
-    constructor(direction) {
-        super(4, "Se déplacer " + DirectionToString(direction));
+    constructor(player, direction) {
+        super(player, 4, "Se déplacer " + DirectionToString(direction));
     }
 }
 
 class Wall extends Action {
-    constructor(direction) {
-        super(3, "Poser un mur " + DirectionToString(direction));
+    constructor(player, direction) {
+        super(player, 3, "Poser un mur " + DirectionToString(direction));
     }
 }
 
@@ -73,32 +79,37 @@ class Wall extends Action {
 // ----------- GOD ACTIONS -----------
 
 class Message extends Action {
-    constructor() {
-        super(5, "Envoyer un MESSAGE DIVIN");
+    constructor(player) {
+        super(player, 5, "Envoyer un MESSAGE DIVIN");
     }
 }
 
 class Portal extends Action {
-    constructor(position_1, position_2) {
-        super(1, "Poser un PORTAIL de " + position_1 + " à " + position_2);
+    constructor(player, position_1, position_2) {
+        super(player, 1, "Poser un PORTAIL de " + position_1 + " à " + position_2);
     }
 }
 
 class Shield extends Action {
-    constructor() {
-        super(0, "Protéger son Humain grâce à un BOUCLIER");
+    constructor(player) {
+        super(player, 0, "Protéger son Humain grâce à un BOUCLIER");
+    }
+
+    DoAction() {
+        super.DoAction();
+        this.m_player.Human.AddShield();
     }
 }
 
 class Stun extends Action {
-    constructor(position) {
-        super(5, "Lancer un ECLAIR d'etourdissement en " + position);
+    constructor(player, position) {
+        super(player, 5, "Lancer un ECLAIR d'etourdissement en " + position);
     }
 }
 
 class Vision extends Action {
-    constructor() {
-        super(7, "Détecter les mines pour son Humain");
+    constructor(player) {
+        super(player, 7, "Détecter les mines pour son Humain");
     }
 }
 

@@ -37,6 +37,15 @@ module.exports = {
                     }
 
                     Utils.PrintStringToAdminChannel(DemiurgeBot, "Les joueurs ont réalisé les actions suivantes : \n" + actions_msg);
+
+                    // Check for Human Shield
+                    let humans = [PVSJL.game.m_humanTeamA, PVSJL.game.m_humanTeamB];
+                    humans.forEach(human => {
+                        if (human.ShieldDuration === 1) {
+                            Utils.PrintStringToAdminChannel(DemiurgeBot, human.Name + " va perdre son bouclier à la fin du tour !");
+                        }
+                    });
+
                 } else {
 
                     Utils.PrintStringToAdminChannel(DemiurgeBot, "Hophophop, tout le monde n'a pas fini sa journée de travail. ");

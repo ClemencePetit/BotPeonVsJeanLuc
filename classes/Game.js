@@ -10,13 +10,13 @@ const TurnType = {
 module.exports = class Game {
 
     constructor() {
-        this.m_humanTeamA = new Human("Péon");
+        this.m_humanTeamA = new Human("Péon", this);
         this.m_humanTeamA.Position = ['C', '5'];
-        this.m_godTeamA = new God("Dieu Péon");
+        this.m_godTeamA = new God("Dieu Péon", this);
         this.m_scoreTeamA = 0;
-        this.m_humanTeamB = new Human("Jean-Luc");
+        this.m_humanTeamB = new Human("Jean-Luc", this);
         this.m_humanTeamB.Position = ['L', '5'];
-        this.m_godTeamB = new God("Dieu Jean-Luc");
+        this.m_godTeamB = new God("Dieu Jean-Luc", this);
         this.m_scoreTeamB = 0;
 
         this.m_currentTurn = 1;

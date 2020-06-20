@@ -2,7 +2,7 @@ const Actions = require("./Actions.js");
 const GameParams = require("./GameParams.js");
 
 module.exports = class Player {
-    constructor(name) {
+    constructor(name, game) {
         this.m_isActionsOver = false;
         this.m_isTurnOver = false;
         this.m_canCommunicate = true;
@@ -11,6 +11,8 @@ module.exports = class Player {
         this.m_actionSlots = new Array(GameParams.NbActionSlots);
 
         this.m_name = name;
+
+        this.m_game = game;
 
         return this;
     }
@@ -23,15 +25,13 @@ module.exports = class Player {
         return this.m_name;
     }
 
-    get CanCommunicate()
-    {
+    get CanCommunicate() {
         return this.m_canCommunicate;
-	}
+    }
 
-    set CanCommunicate(value)
-    {
+    set CanCommunicate(value) {
         this.m_canCommunicate = value;
-	}
+    }
 
     IsActionSlotsFull() {
         return this.m_currentActionSlot >= this.m_actionSlots.length;
@@ -90,8 +90,13 @@ module.exports = class Player {
 
     EndTurn() {
         this.m_isTurnOver = true;
-    }
 
+        for (let action of this.m_actionSlots) {
+            if (action != null) {
+                action.DoAction();
+            }
+        }
+    }
 
 
     StartTurn() {

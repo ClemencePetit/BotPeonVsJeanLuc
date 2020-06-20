@@ -3,8 +3,9 @@ const Player = require("./Player.js");
 const Actions = require("./Actions.js");
 
 module.exports = class God extends Player {
-    constructor(name) {
-        super(name);
+    constructor(name, game) {
+        super(name, game);
+
         this.m_shieldCD = 0;
         this.m_AOEStunCD = 0;
         this.m_mineVisionCD = 0;
@@ -34,9 +35,14 @@ module.exports = class God extends Player {
         return this.m_divineOrderCD;
     }
 
+    get Human() {
+        return this.m_game.GetHumanFromGod(this);
+    }
+
     DOShield() {
+
         if (this.CanShield()) {
-            let action = new Actions.Shield();
+            let action = new Actions.Shield(this);
             if (super.AddAction(action)) {
                 this.m_shieldCD = GameParams.GodShielCD;
                 return action;
@@ -48,7 +54,7 @@ module.exports = class God extends Player {
     DOAOEStun(position) {
 
         if (this.CanAOEStun()) {
-            let action = new Actions.Stun(position);
+            let action = new Actions.Stun(this, position);
             if (super.AddAction(action)) {
                 this.m_AOEStunCD = GameParams.GodAOEStunCD;
                 return action;
@@ -60,7 +66,7 @@ module.exports = class God extends Player {
     DoMineVision() {
 
         if (this.CanMineVision()) {
-            let action = new Actions.Vision();
+            let action = new Actions.Vision(this);
             if (super.AddAction(action)) {
 
                 this.m_mineVisionCD = GameParams.GodMineVisionCD;
@@ -74,7 +80,7 @@ module.exports = class God extends Player {
     DoTPPortal(position_1, position_2) {
 
         if (this.CanTPPortal()) {
-            let action = new Actions.Portal(position_1, position_2);
+            let action = new Actions.Portal(this, position_1, position_2);
             if (super.AddAction(action)) {
 
                 this.m_TPPortalCD = GameParams.GodTPPortalCD;
@@ -87,7 +93,7 @@ module.exports = class God extends Player {
 
     DoDivineOrder() {
         if (this.CanDivineOrder()) {
-            let action = new Actions.Message();
+            let action = new Actions.Message(this);
             if (super.AddAction(action)) {
                 this.m_divineOrderCD = GameParams.DivineOrderCD;
                 return action;
@@ -165,4 +171,4 @@ module.exports = class God extends Player {
             this.m_divineOrderCD -= 1;
         }
     }
-}
+};

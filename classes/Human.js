@@ -4,8 +4,8 @@ const Player = require("./Player.js");
 const Actions = require("./Actions");
 
 module.exports = class Human extends Player {
-    constructor(name) {
-        super(name);
+    constructor(name, game) {
+        super(name, game);
 
         this.m_currentPA = GameParams.HumanPA;
         this.m_stunDuration = 0; // number of turn the human will be stun
@@ -40,7 +40,7 @@ module.exports = class Human extends Player {
 
     DoMine() {
         if (this.CanMine()) {
-            let action = new Actions.Mine();
+            let action = new Actions.Mine(this);
             if (super.AddAction(action)) {
 
                 this.m_currentPA -= GameParams.HumanDeployMine;
@@ -53,7 +53,7 @@ module.exports = class Human extends Player {
 
     DoMove(direction) {
         if (this.CanMove()) {
-            let action = new Actions.Move(direction);
+            let action = new Actions.Move(this, direction);
             if (super.AddAction(action)) {
 
                 this.m_currentPA -= GameParams.HumanMovementCost;
@@ -66,7 +66,7 @@ module.exports = class Human extends Player {
 
     DoWall(direction) {
         if (this.CanWall()) {
-            let action = new Actions.Wall(direction);
+            let action = new Actions.Wall(this, direction);
             if (super.AddAction(action)) {
 
                 this.m_currentPA -= GameParams.HumanPlaceWall;
@@ -100,5 +100,9 @@ module.exports = class Human extends Player {
         if (this.m_shieldDuration > 0) {
             this.m_shieldDuration -= 1;
         }
+    }
+
+    AddShield() {
+        this.m_shieldDuration = GameParams.GodShieldDuration;
     }
 };

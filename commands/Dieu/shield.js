@@ -17,7 +17,7 @@ module.exports = {
 
                 if (player.CanShield()) {
 
-                    let action = player.DOShield(position);
+                    let action = player.DOShield();
                     Utils.HandlePlayerAction(player, action, message.channel);
 
                 } else {
