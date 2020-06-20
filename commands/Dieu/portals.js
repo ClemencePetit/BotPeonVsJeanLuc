@@ -21,7 +21,7 @@ module.exports = {
 
                         message.channel.send("Certes, mais où?");
 
-                    } else if (arguments[0].match(/^[a-n][1-9]$/i) && arguments[1].match(/^[a-n][1-9]$/i)) {
+                    } else if (arguments[0].match(/^[a-o]([1-9]|10)$/i) && arguments[1].match(/^[a-o]([1-9]|10)$/i)) {
 
                         //test distance
                         let disRow = Math.abs(arguments[0].toLowerCase().charCodeAt(0) - arguments[1].toLowerCase().charCodeAt(0));

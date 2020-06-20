@@ -21,7 +21,7 @@ module.exports = {
                     let position = arguments[0];
                     if (arguments.length === 0) {
                         message.channel.send("Certes. Mais où?");
-                    } else if (position.match(/^[a-n][1-9]$/i)) {
+                    } else if (position.match(/^[a-o]([1-9]|10)$/i)) {
                         let action = player.DOAOEStun(position);
                         Utils.HandlePlayerAction(player, action, message.channel);
                     } else {
