@@ -2,8 +2,8 @@ const Utils = require("../functions/utils").Utils;
 
 // Mine capacity
 module.exports = {
-    name: 'wait',
-    description: 'Do nothing and wait for the next turn.',
+    name: 'patienter',
+    description: 'Te fait patienter quelques heures, pour décaler tes prochaines actions dans le temps.',
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);

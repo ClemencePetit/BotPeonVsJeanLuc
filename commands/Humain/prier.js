@@ -2,8 +2,8 @@ const Utils = require("../../functions/utils").Utils;
 
 // pray power
 module.exports = {
-    name: 'pray',
-    description: 'Send a pray to your god. Write !pray emote1 emote2... You can only use emotes starting by \"PJL_\"',
+    name: 'prier',
+    description: 'Adresse une prière à ton Dieu. Ecris !prier emote1 emote2... Tu peux utiliser toutes les emots commençant par \"PJL_\"',
     execute(DemiurgeBot, message, arguments) 
     {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);

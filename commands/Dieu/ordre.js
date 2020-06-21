@@ -2,8 +2,8 @@ const Utils = require("../../functions/utils").Utils;
 
 // pray power!
 module.exports = {
-    name: 'order',
-    description: 'Send an order to your human. Write !order emote1 emote2... You can only use emotes starting by \"PJL_\"',
+    name: 'ordre',
+    description: 'Envoie un ordre à ton humain. Ecris !ordre emote1 emote2... Tu peux uniquement utiliser les emotes commençant par \"PJL_\"',
     execute(DemiurgeBot, message, arguments) 
     {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
@@ -43,7 +43,7 @@ module.exports = {
             // Checking if the msg emotes are allowed
             if (!Utils.CheckIfEmotesAreAllowed(message, arguments))
             {
-                message.channel.send("Ton ordre contient des emojis interdits. Fais un effort et écrit bien avec les emojis de ma terre natale.");
+                message.channel.send("Ton ordre contient des emojis interdits. Fais un effort et écris bien avec les emojis de ma terre natale.");
                 return;
 		    }
 
