@@ -133,11 +133,11 @@ module.exports = class Game {
         switch (string) {
             case "jean-luc":
                 return this.m_humanTeamB;
-            case "dieu jean-luc":
+            case "dieu-jean-luc":
                 return this.m_godTeamB;
             case "peon":
                 return this.m_humanTeamA;
-            case "dieu peon":
+            case "dieu-peon":
                 return this.m_godTeamA;
         }
         return null;
