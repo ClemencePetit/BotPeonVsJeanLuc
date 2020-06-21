@@ -1,11 +1,10 @@
 let BotData = require("../../BotData.js");
 const Game = require("../../classes/Game.js");
 const Utils = require("../../functions/utils").Utils;
-const VoiceHandler = require("../../functions/sounds");
 
 async function play(voiceChannel) {
 	const connection = await voiceChannel.join();
-	connection.play('Intro1.mp3');
+	connection.play('./Sons/Intro1.mp3');
 }
 
 // Game entry point
