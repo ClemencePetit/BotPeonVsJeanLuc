@@ -35,7 +35,7 @@ module.exports = {
                 });
 
                 if (mines.length === 0) {
-                    minesMsg.addField("", "Aucune mine présente.");
+                    minesMsg.setDescription("Aucune mine présente.");
                 }
 
                 message.channel.send(minesMsg).catch(console.error);
