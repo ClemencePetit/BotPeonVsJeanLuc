@@ -1,6 +1,12 @@
 let BotData = require("../../BotData.js");
 const Game = require("../../classes/Game.js");
 const Utils = require("../../functions/utils").Utils;
+const VoiceHandler = require("../../functions/sounds");
+
+async function play(voiceChannel) {
+	const connection = await voiceChannel.join();
+	connection.play('Intro1.mp3');
+}
 
 // Game entry point
 module.exports = {
@@ -25,6 +31,8 @@ module.exports = {
 
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
+				play(message.member.voice.channel);
+		
 
                 message.channel.send(message.author.username + " m'a invoqué, moi, Démiurge Intangible du Jeu.");
                 PVSJL.running = true;
