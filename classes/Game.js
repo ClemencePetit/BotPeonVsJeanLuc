@@ -129,6 +129,20 @@ module.exports = class Game {
         return null;
     }
 
+    GetPlayerFromString(string) {
+        switch (string) {
+            case "jean-luc":
+                return this.m_humanTeamB;
+            case "dieu jean-luc":
+                return this.m_godTeamB;
+            case "peon":
+                return this.m_humanTeamA;
+            case "dieu peon":
+                return this.m_godTeamA;
+        }
+        return null;
+    }
+
     GetOrderedActionsFromPlayers() {
 
         let allActions = [];
