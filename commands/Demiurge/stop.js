@@ -19,7 +19,7 @@ module.exports = {
 
                 message.channel.send(message.author.username + " choisit d'arrêter ces enfantillages sans autre forme de procès.");
 				
-				//Utils.stop(DemiurgeBot,message);
+				Utils.stop(DemiurgeBot,message);
                 PVSJL.running = false;
                 try {
                     DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
@@ -29,7 +29,7 @@ module.exports = {
 					}
 					else {
 						
-                    Utils.PrintStringToAllChannels(DemiurgeBot, "Les enfantillages ont assez duré. Les Démiurges vous en ont eu marre.");
+                    Utils.PrintStringToAllChannels(DemiurgeBot, "Les enfantillages ont assez duré. Les Démiurges en ont eu marre.");
 					}
 					DemiurgeBot.user.setActivity("Construire un monde à détruire").catch(console.error);
 					
