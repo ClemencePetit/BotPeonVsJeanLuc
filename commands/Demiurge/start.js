@@ -12,33 +12,29 @@ module.exports = {
 
         if (!PVSJL) {
             PVSJL = BotData.PVSJL;
-            PVSJL.game = new Game();
-
-            DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
         }
-		if(!PVSJL.game)
-		{
-			PVSJL.game = new Game();
-		}
-		if(!PVSJL.queue)
-		{
-			PVSJL.queue = new Map();
-		}
 
+        // Checking if a game is not already running
         if (!PVSJL.running) {
 
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
 
+                // Create a new game object
+                PVSJL.game = new Game();
+                PVSJL.queue = new Map();
+
+                DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
+
                 message.channel.send(message.author.username + " m'a invoqué, moi, Démiurge Intangible du Jeu.");
                 PVSJL.running = true;
 
                 PVSJL.game.StartGame();
-				DemiurgeBot.user.setActivity("Observer de vaines luttes d\égo et de pouvoir.").catch(console.error);
+                DemiurgeBot.user.setActivity("Observer de vaines luttes d\égo et de pouvoir.").catch(console.error);
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
-				Utils.execute(DemiurgeBot,message,'./Sons/start.wav');
-				Utils.execute(DemiurgeBot,message,'./Sons/start_fr.wav');
+                Utils.execute(DemiurgeBot, message, './Sons/start.wav');
+                Utils.execute(DemiurgeBot, message, './Sons/start_fr.wav');
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serai maître de votre partie.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Je vous prierai d'être poli et de commencer toutes vos phrases par **!** qui veut dire *s'il vous plait* en théoludolique. Merci.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi aide. *!help* aide entendu.");

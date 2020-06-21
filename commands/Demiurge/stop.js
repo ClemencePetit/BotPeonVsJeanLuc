@@ -18,21 +18,25 @@ module.exports = {
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
 
                 message.channel.send(message.author.username + " choisit d'arrêter ces enfantillages sans autre forme de procès.");
-				
-				//Utils.stop(DemiurgeBot,message);
+
+                //Utils.stop(DemiurgeBot,message);
                 PVSJL.running = false;
+                PVSJL.game = null;
+
                 try {
                     DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
-					if(PVSJL.game.ScoreTeamA===5 || PVSJL.game.ScoreTeamB===5){
-						
-                    Utils.PrintStringToAllChannels(DemiurgeBot, "Maintenant que cette rivalité a trouvé sa conclusion, nous pouvons retourner à notre repos... jusqu\'à la prochaine fois.");
-					}
-					else {
-						
-                    Utils.PrintStringToAllChannels(DemiurgeBot, "Les enfantillages ont assez duré. Les Démiurges vous en ont eu marre.");
-					}
-					DemiurgeBot.user.setActivity("Construire un monde à détruire").catch(console.error);
-					
+                    if (PVSJL.game.ScoreTeamA === 3 || PVSJL.game.ScoreTeamB === 3) {
+
+                        let winnerName = PVSJL.game.ScoreTeamB === 3 ? "Jean-Luc" : "Péon";
+
+                        Utils.PrintStringToAllChannels(DemiurgeBot, "La religion de " + winnerName + " est sacrée vainqueur !");
+                        Utils.PrintStringToAllChannels(DemiurgeBot, "Maintenant que cette rivalité a trouvé sa conclusion, nous pouvons retourner à notre repos... jusqu\'à la prochaine fois.");
+                    } else {
+
+                        Utils.PrintStringToAllChannels(DemiurgeBot, "Les enfantillages ont assez duré. Les Démiurges vous en ont eu marre.");
+                    }
+                    DemiurgeBot.user.setActivity("Construire un monde à détruire").catch(console.error);
+
 
                 } catch (e) {
                     console.error(e);
