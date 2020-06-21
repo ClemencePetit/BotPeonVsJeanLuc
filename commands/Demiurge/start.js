@@ -20,6 +20,10 @@ module.exports = {
 		{
 			PVSJL.game = new Game();
 		}
+		if(!PVSJL.queue)
+		{
+			PVSJL.queue = new Map();
+		}
 
         if (!PVSJL.running) {
 
@@ -32,7 +36,8 @@ module.exports = {
                 PVSJL.game.StartGame();
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
-
+				Utils.execute(DemiurgeBot,message,'./Sons/Intro1.mp3');
+				Utils.execute(DemiurgeBot,message,'./Sons/Intro2.mp3');
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serai maître de votre partie.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Je vous prierai d'être poli et de commencer toutes vos phrases par **!** qui veut dire *s'il vous plait* en théoludolique. Merci.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi help. *!help* bien entendu.");

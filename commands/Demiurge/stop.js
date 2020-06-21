@@ -18,11 +18,14 @@ module.exports = {
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
 
                 message.channel.send(message.author.username + " choisit d'arrêter la partie comme un(e) sauvage.");
+				
+				Utils.stop(DemiurgeBot,message);
                 PVSJL.running = false;
                 try {
                     DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
 
                     Utils.PrintStringToAllChannels(DemiurgeBot, "===== FIN DE PARTIE =====")
+					
 
                 } catch (e) {
                     console.error(e);
