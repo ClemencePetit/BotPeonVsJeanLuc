@@ -19,7 +19,7 @@ module.exports = {
 		else
 		{
 			
-				Utils.execute(DemiurgeBot,message,'./Sons/Hurry/'+arguments[0]+'.mp3');
+				Utils.execute(DemiurgeBot,message,'./Sons/hurry'+arguments[0]+'.wav');
 		}
 
 

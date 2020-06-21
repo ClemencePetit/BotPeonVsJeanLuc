@@ -1,4 +1,6 @@
 
+const Utils = require("../../functions/utils").Utils;
+
 module.exports =
     {
         name: 'score',
@@ -49,16 +51,29 @@ module.exports =
                 {
                     PVSJL.game.ScoreTeamB += toAdd;
                     message.channel.send("Le nouveau score de la team JL est: " + PVSJL.game.ScoreTeamB);
+					Utils.PrintStringToAllChannels(DemiurgeBot, "La religion de Jean-Luc gagne un point supplémentaire. Elle en a désormais." + PVSJL.game.ScoreTeamB);
+					Utils.execute(DemiurgeBot,message,'./Sons/'+PVSJL.game.ScoreTeamB+'JL.wav');
+					if(PVSJL.game.ScoreTeamB===5){
+						Utils.execute(DemiurgeBot,message,'./Sons/victoireJL.wav');
+					}
 				}
                 else 
                 {
                     PVSJL.game.ScoreTeamA += toAdd;
-                    message.channel.send("Le nouveau score de la team Pean est: " + PVSJL.game.ScoreTeamA);
+                    message.channel.send("Le nouveau score de la team Peon est: " + PVSJL.game.ScoreTeamA);
+					Utils.PrintStringToAllChannels(DemiurgeBot, "Péon et son Dieu augmentent leur compteur et atteignent le score de " + PVSJL.game.ScoreTeamA);
+					Utils.execute(DemiurgeBot,message,'./Sons/'+PVSJL.game.ScoreTeamA+'P.wav');
+					if(PVSJL.game.ScoreTeamA===5){
+						Utils.execute(DemiurgeBot,message,'./Sons/victoireP.wav');
+					}
 				}
+				
+				
+				
             } 
             else 
             {
-                message.channel.send("Il n\'y a pas de partie en cours");
+                message.channel.send("Nous sommes en temps de paix.");
             }
 
         },

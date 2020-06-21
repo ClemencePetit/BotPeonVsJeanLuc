@@ -23,8 +23,14 @@ module.exports = {
                 PVSJL.running = false;
                 try {
                     DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
-
+					if(PVSJL.game.ScoreTeamA===5 || PVSJL.game.ScoreTeamB===5){
+						
+                    Utils.PrintStringToAllChannels(DemiurgeBot, "Maintenant que cette rivalité a trouvé sa conclusion, nous pouvons retourner à notre repos... jusqu\'à la prochaine fois.");
+					}
+					else {
+						
                     Utils.PrintStringToAllChannels(DemiurgeBot, "Les enfantillages ont assez duré. Les Démiurges vous en ont eu marre.");
+					}
 					DemiurgeBot.user.setActivity("Construire un monde à détruire").catch(console.error);
 					
 

@@ -37,11 +37,11 @@ module.exports = {
 				DemiurgeBot.user.setActivity("Observer de vaines luttes d\égo et de pouvoir.").catch(console.error);
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
-				Utils.execute(DemiurgeBot,message,'./Sons/Intro1.mp3');
-				Utils.execute(DemiurgeBot,message,'./Sons/Intro2.mp3');
+				Utils.execute(DemiurgeBot,message,'./Sons/start.wav');
+				Utils.execute(DemiurgeBot,message,'./Sons/start_fr.wav');
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serai maître de votre partie.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Je vous prierai d'être poli et de commencer toutes vos phrases par **!** qui veut dire *s'il vous plait* en théoludolique. Merci.");
-                Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi help. *!help* bien entendu.");
+                Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi aide. *!help* aide entendu.");
                 //Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
 
             } else {
