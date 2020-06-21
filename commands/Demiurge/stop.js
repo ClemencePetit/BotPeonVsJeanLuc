@@ -19,7 +19,7 @@ module.exports = {
 
                 message.channel.send(message.author.username + " choisit d'arrêter ces enfantillages sans autre forme de procès.");
 				
-				Utils.stop(DemiurgeBot,message);
+				//Utils.stop(DemiurgeBot,message);
                 PVSJL.running = false;
                 try {
                     DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
