@@ -221,6 +221,8 @@ class Utils {
 			};
 			
 			DemiurgeBot.PVSJL.get(message.guild.id).queue.set(message.guild.id, queueConstruct);
+			console.log("1 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			message.channel.send("1 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			queueConstruct.songs.push(son);
 			
 			try{
@@ -235,18 +237,22 @@ class Utils {
 			}
 		}
 		else{
+			message.channel.send("5 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			console.log("5 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs.push(son);
 			return message.channel.send(son + " en attente.");
 		}
 	}
 	
 	static stop(DemiurgeBot,message){
+		console.log("here");
 		if(!message.member.voice.channel)
 		{
 			return message.channel.send("Faut être connecté");
 		}
-		console.log(DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-		
+		//console.log(DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+		message.channel.send("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+		console.log("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).voiceChannel.leave();
@@ -261,7 +267,11 @@ class Utils {
 		
 		let dispatcher = serveurQueue.connection.play(son)
 		.on("finish",()=>{
+			message.channel.send("3 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			console.log("3 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			serveurQueue.songs.shift();
+			message.channel.send("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			console.log("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);
 		});
 		serveurQueue.textChannel.send("on lance "+son);
