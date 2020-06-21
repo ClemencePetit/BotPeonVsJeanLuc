@@ -3,8 +3,8 @@ const Actions = require("../../classes/Actions");
 
 // Wall capacity
 module.exports = {
-    name: 'wall',
-    description: 'Create a 3-blocks all on the side given in parameter (right/left/up/down). Ex : !wall right.',
+    name: 'mur',
+    description: 'Crée un mur de cases du côté donné en paramètre (droite/gauche/haut/bas). Ex : !mur droite.',
     execute(DemiurgeBot, message, arguments) {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
 
@@ -17,7 +17,7 @@ module.exports = {
                 if (player.CanWall()) {
 
                     if (arguments.length === 0) {
-                        message.channel.send("Certes, mais où? Up? Down? Left? Right?");
+                        message.channel.send("Certes, mais où? Haut ? Bas ? Gauche ? Droite ?");
                     } else {
 
                         let direction = -1;
@@ -42,7 +42,7 @@ module.exports = {
                     }
 
                 } else {
-                    message.channel.send("Tu n'as plus assez de points d'actions.");
+                    message.channel.send("Tu es trop fatigué pour faire de la maçonnerie aujourd\'hui.");
                 }
             }
         }

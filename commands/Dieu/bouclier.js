@@ -5,8 +5,8 @@ const Utils = require("../../functions/utils").Utils;
 
 // shield power
 module.exports = {
-    name: 'shield',
-    description: 'Protect your human.',
+    name: 'bouclier',
+    description: 'Protège ton humain. Tant qu\'il est couvert, rien ne l\'atteint.',
     execute(DemiurgeBot, message, arguments) {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
 

@@ -5,7 +5,7 @@ const Utils = require("../../functions/utils").Utils;
 // Mines' vision power
 module.exports = {
     name: 'vision',
-    description: 'Give to you and your human the position of all the mines.',
+    description: 'Te révèle, à toi et à ton humain, la position des mines présentes sur le terrain.',
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);

@@ -1,7 +1,7 @@
 // Mines' vision power
 module.exports = {
     name: 'ping',
-    description: 'Send a ping to your mate that says you want to attack. You must give as argument \"attack\", \"defense\" or \"taunt\"',
+    description: 'Partage tes intentions à ton coéquipier ou provoque l\'adversaire. Tu dois donner comme argument \"attaque\", \"défense\" or \"provocation\"',
     execute(DemiurgeBot, message, arguments) 
     {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
@@ -13,18 +13,18 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("Je ne ferais passer que les messages suivants : \"attack\", \"defense\" ou \"taunt\".");  
+            message.channel.send("Précise le fond de ta pensée : \"attaque\", \"défense\" ou \"provocation\".");  
             return;
 		}
         else if (arguments.length > 1)
         {
-            message.channel.send("Tu parles trop. Je ne ferais passer que les messages suivants : \"attack\", \"defense\" ou \"taunt\".");  
+            message.channel.send("Tu parles trop. Je ne ferais passer que les messages suivants : \"attaque\", \"défense\" ou \"provocation\".");  
             return;   
 		}
 
-        if (arguments[0] !== "defense" && arguments[0] !== "attack" && arguments[0] !== "taunt" )
+        if (arguments[0] !== "defense" && arguments[0] !== "attaque" && arguments[0] !== "provocation" )
         {
-            message.channel.send("Damn, c'est dur de te comprendre....Redit pour voir?");  
+            message.channel.send("Damn, c'est dur de te comprendre... Redis pour voir?");  
 		    return;
         }
 
@@ -32,7 +32,7 @@ module.exports = {
         {
             // Getting message destination
             let channels = [];
-            if (arguments[0] === "taunt") // taunt message 
+            if (arguments[0] === "provocation") // taunt message 
             {
                 if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Peon")).length !== 0) // team A to team B
                 {
@@ -68,26 +68,26 @@ module.exports = {
             let pingMessage;
             if (message.member.roles.cache.array().map(a => a.name).filter(w => w.includes("Dieu")).length > 0) // A god send the message
             {
-                if (arguments[0] === "attack")
+                if (arguments[0] === "attaque")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bonté, vous fait savoir qu'il souhaite passer à l'offensive !";
+                    pingMessage = "Votre dieu, dans son infinie bonté, te fait savoir qu'il souhaite passer à l'offensive !";
 				}
-                else if (arguments[0] === "defense")
+                else if (arguments[0] === "défense")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bonté, vous fait savoir qu'il souhaite défendre la position !";        
+                    pingMessage = "Votre dieu, dans son infinie bonté, te fait savoir qu'il souhaite défendre la position !";        
 				}
                 else //taunt
                 {
-                    pingMessage = "Le dieu d'une religion d'hérétiques vous fait savoir son désir de vous anéantir!";
+                    pingMessage = "Le dieu d'une religion d'hérétiques te fait savoir son désir de vous anéantir !";
 				}
 			}
             else // A human send the message
             {
-                if (arguments[0] === "attack")
+                if (arguments[0] === "attaque")
                 {
                     pingMessage = "La créature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite passer à l'offensive !";
 				}
-                else if (arguments[0] === "defense")
+                else if (arguments[0] === "défense")
                 {
                     pingMessage = "La créature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite défendre la position !";        
 				}

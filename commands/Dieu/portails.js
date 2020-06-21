@@ -5,8 +5,8 @@ const Utils = require("../../functions/utils").Utils;
 
 // Teleportation portals power
 module.exports = {
-    name: 'portals',
-    description: 'Create teleportation portals between the cases given in parameter (if the distance is lower than 3 cases). Ex : !portals E7 E5',
+    name: 'portails',
+    description: 'Crée des portails de téléportation entre les cases données en paramètres, à condition que pas plus de trois cases directement adjacentes ne les séparent. Ex : !portails E7 E5',
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
@@ -33,14 +33,14 @@ module.exports = {
                             let action = player.DoTPPortal(arguments[0],arguments[1]);
                             Utils.HandlePlayerAction(player, action, message.channel);
                         } else {
-                            message.channel.send("Tes portails sont trop éloignés! La distance maximale est de " + maxDis + " cases.");
+                            message.channel.send("Tes portails sont trop éloignés ! La distance maximale est de " + maxDis + " cases.");
                         }
                     } else {
-                        message.channel.send("Tu dois indiquer un positionnement valide. Sinon pas de protails. Et oui.");
+                        message.channel.send("Tu dois indiquer un positionnement valide. Sinon le tissu même de l'espace-temps risque de se déchirer. Ceci serait fort dommageable.");
                     }
 
                 } else {
-                    message.channel.send("Le tissu de l'espace temps sera à nouveau conforme dans " + player.TPPortalCD + " jours.");
+                    message.channel.send("Le tissu de l'espace-temps n\'a pas encore eu le temps de cicatriser. Laisse lui encore " + player.TPPortalCD + " jours.");
                 }
             }
         }

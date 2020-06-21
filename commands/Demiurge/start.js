@@ -34,6 +34,7 @@ module.exports = {
                 PVSJL.running = true;
 
                 PVSJL.game.StartGame();
+				DemiurgeBot.user.setActivity("Observer de vaines luttes d\égo et de pouvoir.").catch(console.error);
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
 				Utils.execute(DemiurgeBot,message,'./Sons/Intro1.mp3');
@@ -44,7 +45,7 @@ module.exports = {
                 //Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
 
             } else {
-                message.channel.send("L'invocation du Démiurge Intangible du Jeu ne peut être procédée que par des êtres eceptionnels.");
+                message.channel.send("L'invocation du Démiurge Intangible du Jeu ne peut être procédée que par des êtres exceptionnels.");
             }
 
         } else {

@@ -29,7 +29,7 @@ DemiurgeBot.login(process.env.BOTKEY);
 
 DemiurgeBot.on('ready', () => {
   console.log(`Logged in as ${DemiurgeBot.user.tag}!`);
-  DemiurgeBot.user.setActivity("Building a world to destroy").catch(console.error);
+  DemiurgeBot.user.setActivity("Construire un monde à détruire").catch(console.error);
 });
 
 //React to !message

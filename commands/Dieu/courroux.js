@@ -5,8 +5,8 @@ const Utils = require("../../functions/utils").Utils;
 
 // Stun power
 module.exports = {
-    name: 'stun',
-    description: 'Apply stun in a range of 1 case around the case given in parameter. Ex : !stun E7',
+    name: 'courroux',
+    description: 'Abat ton courroux avec une portée de une case autour de celle donnée en paramètre en détruisant les murs et les portails, déclanchant les mines et assommant les humains pour le reste de la journée. Ex : !stun E7.',
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);

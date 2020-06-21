@@ -2,8 +2,8 @@ const Utils = require("../../functions/utils").Utils;
 
 // Divine message power
 module.exports = {
-    name: 'message',
-    description: 'Apply stun in a range of 1 case around a random case',
+    name: 'foudre',
+    description: 'Lance la foudre, précise et destructrice sur une case aléatoire, détruisant murs et portails, déclenchant les mines et assommant les humains pour le reste de la journée.',
     execute(DemiurgeBot, message, arguments) {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
 

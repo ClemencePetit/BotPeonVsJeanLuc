@@ -3,8 +3,8 @@ let botData = require("../BotData.js");
 const fs = require('fs');
 
 module.exports = {
-	name: 'help',
-	description: 'Indique au joueur toutes les actions qu\'il peut faire en fonction de son rôle',
+	name: 'aide',
+	description: 'Dans ma mansuétude, je te rappelle quelles sont les actions qui sont à ta portée.',
 	execute(DemiurgeBot, message, arguments){
 
 	let helpMsg = new MessageEmbed()
