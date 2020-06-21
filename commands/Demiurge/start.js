@@ -2,11 +2,6 @@ let BotData = require("../../BotData.js");
 const Game = require("../../classes/Game.js");
 const Utils = require("../../functions/utils").Utils;
 
-async function play(voiceChannel) {
-	const connection = await voiceChannel.join();
-	connection.play('./Sons/Intro1.mp3');
-}
-
 // Game entry point
 module.exports = {
     name: 'start',
@@ -25,13 +20,15 @@ module.exports = {
 		{
 			PVSJL.game = new Game();
 		}
+		if(!PVSJL.queue)
+		{
+			PVSJL.queue = new Map();
+		}
 
         if (!PVSJL.running) {
 
             //Checking autorisations
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
-				play(message.member.voice.channel);
-		
 
                 message.channel.send(message.author.username + " m'a invoqué, moi, Démiurge Intangible du Jeu.");
                 PVSJL.running = true;
@@ -39,7 +36,8 @@ module.exports = {
                 PVSJL.game.StartGame();
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
-
+				Utils.execute(DemiurgeBot,message,'./Sons/Intro1.mp3');
+				Utils.execute(DemiurgeBot,message,'./Sons/Intro2.mp3');
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serai maître de votre partie.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Je vous prierai d'être poli et de commencer toutes vos phrases par **!** qui veut dire *s'il vous plait* en théoludolique. Merci.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi help. *!help* bien entendu.");

@@ -169,6 +169,68 @@ class Utils {
 
         return true;
     }
+	
+	static async execute(DemiurgeBot, message, son){
+		let voiceChannel = message.member.voice.channel;
+		if(!voiceChannel)
+		{
+			return message.channel.send("Faut être dans un vocal");
+		}
+		if(!DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id)){
+			let queueConstruct={
+				textChannel: message.channel,
+				voiceChannel: voiceChannel,
+				connection: null,
+				songs: [],
+				playing: true
+			};
+			
+			DemiurgeBot.PVSJL.get(message.guild.id).queue.set(message.guild.id, queueConstruct);
+			queueConstruct.songs.push(son);
+			
+			try{
+				let connection = await voiceChannel.join();
+				queueConstruct.connection=connection;
+				Utils.play(DemiurgeBot,message,son);
+			}
+			catch(err){
+				console.log(err);
+				DemiurgeBot.PVSJL.get(message.guild.id).queue.delete(message.guild.id);
+				return message.channel.send(err);
+			}
+		}
+		else{
+			DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs.push(son);
+			return message.channel.send(son + " en attente.");
+		}
+	}
+	
+	static stop(DemiurgeBot,message){
+		if(!message.member.voice.channel)
+		{
+			return message.channel.send("Faut être connecté");
+		}
+		console.log(DemiurgeBot.PVSJL.get(message.guild.id));
+		
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).voiceChannel.leave();
+	}
+	
+	static play(DemiurgeBot,message,son) {
+		let serveurQueue=DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id);
+		if(!son){
+			DemiurgeBot.PVSJL.get(message.guild.id).queue.delete(message.guild.id);
+			return;
+		}
+		
+		let dispatcher = serveurQueue.connection.play(son)
+		.on("finish",()=>{
+			serveurQueue.songs.shift();
+			Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);
+		});
+		serveurQueue.textChannel.send("on lance "+son);
+}
 }
 
 Utils.PLAYER_TYPE = PLAYER_TYPE;
