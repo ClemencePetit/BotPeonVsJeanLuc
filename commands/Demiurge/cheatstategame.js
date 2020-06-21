@@ -17,8 +17,9 @@ module.exports = {
                 let peonMsg = new MessageEmbed()
                     .setColor([210, 210, 210])
                     .setTitle("Etat du jeu")
-                    .addField("Péon", "PA :" + PVSJL.game.HumanTeamA.CurrentPA + " - Bouclier : " + PVSJL.game.HumanTeamA.BouclierDuration + " - Assommé : " + PVSJL.game.HumanTeamA.StunDuration + " - Position : " + PVSJL.game.HumanTeamA.Position)
-                    .addField("Jean-Luc", "PA :" + PVSJL.game.HumanTeamB.CurrentPA + " - Bouclier : " + PVSJL.game.HumanTeamB.BouclierDuration + " - Assommé : " + PVSJL.game.HumanTeamB.StunDuration + " - Position : " + PVSJL.game.HumanTeamB.Position)
+                    .addField("Scores", "Religion de Péon : " + PVSJL.game.ScoreTeamA + " | " + " Religion de Jean-Luc : " + PVSJL.game.ScoreTeamB)
+                    .addField("Péon", "PA :" + PVSJL.game.HumanTeamA.CurrentPA + " - Bouclier : " + PVSJL.game.HumanTeamA.ShieldDuration + " - Assommé : " + PVSJL.game.HumanTeamA.StunDuration + " - Position : " + PVSJL.game.HumanTeamA.Position)
+                    .addField("Jean-Luc", "PA :" + PVSJL.game.HumanTeamB.CurrentPA + " - Bouclier : " + PVSJL.game.HumanTeamB.ShieldDuration + " - Assommé : " + PVSJL.game.HumanTeamB.StunDuration + " - Position : " + PVSJL.game.HumanTeamB.Position)
                     .addField("Dieu Péon", "Bouclier :" + PVSJL.game.GodTeamA.BouclierCD + " - Assommé : " + PVSJL.game.GodTeamA.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamA.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamA.MineVisionCD)
                     .addField("Dieu Jean-Luc", "Bouclier :" + PVSJL.game.GodTeamB.BouclierCD + " - Assommé : " + PVSJL.game.GodTeamB.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamB.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamB.MineVisionCD);
                 message.channel.send(peonMsg).catch(console.error);
