@@ -23,9 +23,16 @@ module.exports = {
 					{
 						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Péon se referment.");
 					}
-					if(PVSJL.game.GodTeamA.TPPortalCD==2)
+					if(PVSJL.game.GodTeamB.TPPortalCD==2)
 					{
 						Utils.PrintStringToAdminChannel(DemiurgeBot,"Les portails de Dieu Jean-Luc se referment.");
+					}if(PVSJL.game.GodTeamA.ShieldCD==2)
+					{
+						Utils.PrintStringToAdminChannel(DemiurgeBot,"Le bouclier de Péon disparait.");
+					}
+					if(PVSJL.game.GodTeamB.ShieldCD==2)
+					{
+						Utils.PrintStringToAdminChannel(DemiurgeBot,"Le bouclier de Jean-Luc disparait.");
 					}
 				}
 
