@@ -4,6 +4,8 @@ const PLAYER_TYPE = {
     GOD_ONLY: 2
 };
 
+const MessageEmbed = require('discord.js').MessageEmbed;
+
 class Utils {
 
 
@@ -72,6 +74,24 @@ class Utils {
         return actionsStr;
     }
 
+    static GetChannelFromPlayer(DemiurgeBot, game, player) {
+
+        switch (player) {
+
+            case game.HumanTeamA:
+                return DemiurgeBot.channels.cache.find(ch => ch.name === 'peon');
+            case game.GodTeamA:
+                return DemiurgeBot.channels.cache.find(ch => ch.name === 'dieu-peon');
+            case game.HumanTeamB:
+                return DemiurgeBot.channels.cache.find(ch => ch.name === 'jean-luc');
+            case game.GodTeamB:
+                return DemiurgeBot.channels.cache.find(ch => ch.name === 'dieu-jean-luc');
+
+        }
+
+        return null;
+    }
+
     // Prints the message to all channels (dieu-peon; peon; dieu-jean-luc; jean-luc)
     static PrintStringToAllChannels(DemiurgeBot, string) {
         let channelNames = ["dieu-peon", "peon", "jean-luc", "dieu-jean-luc", "modo"];
@@ -98,7 +118,7 @@ class Utils {
         }
     }
 
-	static PrintToAll(DemiurgeBot, message, content) {
+    static PrintToAll(DemiurgeBot, message, content) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
         if (PVSJL && PVSJL.running && PVSJL.game) {
@@ -106,7 +126,7 @@ class Utils {
             Utils.PrintStringToAllChannels(DemiurgeBot, content);
         }
     }
-	
+
     // Determine if the player can make an action (is the turn over ?) and prints according message
     static CanPlayerMakeAction(player, channel) {
 
@@ -146,28 +166,41 @@ class Utils {
     }
 
     // Check if the given args match with the allowed emojis of the server
-    static CheckIfEmotesAreAllowed(message, args)
-    {
+    static CheckIfEmotesAreAllowed(message, args) {
         const allowedEmotes = message.guild.emojis.cache;
-        for (let argumentsIndex = 0; argumentsIndex < args.length; ++argumentsIndex)
-        {
-            const msgEmote = args[argumentsIndex].split('').join('');   
+        for (let argumentsIndex = 0; argumentsIndex < args.length; ++argumentsIndex) {
+            const msgEmote = args[argumentsIndex].split('').join('');
             let isMsgEmoteAllowed = false;
-            allowedEmotes.each(emote =>
-			{
-                if (emote.toString() === msgEmote)
-                {
-                    isMsgEmoteAllowed = true; 
-				}
-			});
+            allowedEmotes.each(emote => {
+                if (emote.toString() === msgEmote) {
+                    isMsgEmoteAllowed = true;
+                }
+            });
 
-            if (!isMsgEmoteAllowed)
-            {
+            if (!isMsgEmoteAllowed) {
                 return false;
-			}
-		}
+            }
+        }
 
         return true;
+    }
+
+    static GetMineStatus(game) {
+        let mines = game.Mines;
+
+        let minesMsg = new MessageEmbed()
+            .setColor([210, 210, 210])
+            .setTitle("Mines");
+
+        mines.forEach(mine => {
+            minesMsg.addField("Mine " + mine.Position, mine.ToString());
+        });
+
+        if (mines.length === 0) {
+            minesMsg.setDescription("Aucune mine présente.");
+        }
+
+        return minesMsg;
     }
 }
 

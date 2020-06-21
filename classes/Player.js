@@ -117,4 +117,15 @@ module.exports = class Player {
         return null;
     }
 
+    HasPlayerDoneActionOfType(ActionType) {
+
+        for (let actionSlot of this.ActionSlots) {
+            if (actionSlot != null && actionSlot instanceof ActionType) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 };

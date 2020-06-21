@@ -1,6 +1,7 @@
 let botData = require("../../BotData.js");
 const Game = require("../../classes/Game.js");
 const Utils = require("../../functions/utils").Utils;
+const Actions = require("../../classes/Actions.js");
 
 // Game entry point
 module.exports = {
@@ -43,6 +44,22 @@ module.exports = {
                     humans.forEach(human => {
                         if (human.ShieldDuration === 1) {
                             Utils.PrintStringToAdminChannel(DemiurgeBot, human.Name + " va perdre son bouclier à la fin du tour !");
+                        }
+                    });
+
+                    // Check for Mine Vision
+                    let gods = [PVSJL.game.m_godTeamA, PVSJL.game.m_godTeamB];
+                    gods.forEach(god => {
+                        if (god.HasPlayerDoneActionOfType(Actions.Vision)) {
+                            let human = god.Human;
+
+                            let channels = [Utils.GetChannelFromPlayer(DemiurgeBot, PVSJL.game, god), Utils.GetChannelFromPlayer(DemiurgeBot, PVSJL.game, human)];
+                            channels.forEach(channel => {
+                                if (channel != null) {
+                                    channel.send("L'être suprême Demiurge te gracie de son don d'omniscience qui te permet de voir les mines en jeu !");
+                                    channel.send(Utils.GetMineStatus(PVSJL.game));
+                                }
+                            });
                         }
                     });
 
