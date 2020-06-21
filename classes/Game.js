@@ -1,6 +1,7 @@
 const God = require("./God.js");
 const Human = require("./Human.js");
 const GameParams = require("./GameParams.js");
+const Mine = require("./Mine.js");
 
 const TurnType = {
     HUMAN: 0,
@@ -21,6 +22,8 @@ module.exports = class Game {
 
         this.m_currentTurn = 1;
         //this.m_currentTurnType = TurnType.HUMAN;
+
+        this.m_mines = new Map();
 
         return this;
     }
@@ -158,6 +161,18 @@ module.exports = class Game {
             name: player.Name,
             action: player.ActionSlots[slot]
         }
+    }
+
+    AddMine(position, player) {
+        return this.m_mines.set(position, new Mine(position, player)) != null;
+    }
+
+    RemoveMine(position) {
+        return this.m_mines.delete(position);
+    }
+
+    get Mines() {
+        return Array.from(this.m_mines.values());
     }
 };
 

@@ -20,8 +20,25 @@ module.exports = {
                     .addField("Jean-Luc", "PA :" + PVSJL.game.HumanTeamB.CurrentPA + " - Shield : " + PVSJL.game.HumanTeamB.ShieldDuration + " - Stun : " + PVSJL.game.HumanTeamB.StunDuration + " - Position : " + PVSJL.game.HumanTeamB.Position)
                     .addField("Dieu Péon", "Shield :" + PVSJL.game.GodTeamA.ShieldCD + " - Stun : " + PVSJL.game.GodTeamA.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamA.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamA.MineVisionCD)
                     .addField("Dieu Jean-Luc", "Shield :" + PVSJL.game.GodTeamB.ShieldCD + " - Stun : " + PVSJL.game.GodTeamB.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamB.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamB.MineVisionCD);
+
+
                 message.channel.send(peonMsg).catch(console.error);
 
+                let mines = PVSJL.game.Mines;
+
+                let minesMsg = new MessageEmbed()
+                    .setColor([210, 210, 210])
+                    .setTitle("Mines");
+
+                mines.forEach(mine => {
+                    minesMsg.addField("Mine " + mine.Position, mine.ToString());
+                });
+
+                if (mines.length === 0) {
+                    minesMsg.addField("", "Aucune mine présente.");
+                }
+
+                message.channel.send(minesMsg).catch(console.error);
             }
         }
 
