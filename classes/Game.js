@@ -157,9 +157,14 @@ module.exports = class Game {
 
             playersActions.sort(((a, b) => {
 
-                if (a.action == null || b.action == null) {
-                    return 0;
+                if (a.action == null) {
+                    return 1;
                 }
+                
+                if (b.action == null) {
+                    return -1;
+                }
+
 
                 return a.action.Priority - b.action.Priority;
             }));
