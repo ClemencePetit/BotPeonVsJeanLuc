@@ -245,7 +245,7 @@ class Utils {
 		{
 			return message.channel.send("Faut être connecté");
 		}
-		console.log(DemiurgeBot.PVSJL.get(message.guild.id));
+		console.log(DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 		
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();
