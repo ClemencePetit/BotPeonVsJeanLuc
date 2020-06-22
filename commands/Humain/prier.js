@@ -3,7 +3,7 @@ const Utils = require("../../functions/utils").Utils;
 // pray power
 module.exports = {
     name: 'prier',
-    description: 'Adresse une pri�re � ton Dieu. Ecris !prier emote1 emote2... Tu peux utiliser toutes les emots commen�ant par \"PJL_\"',
+    description: 'Adresse une prière à ton Dieu. Ecris !prier emote1 emote2... Tu peux utiliser toutes les emots commençant par \"PJL_\"',
     execute(DemiurgeBot, message, arguments) 
     {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
@@ -15,7 +15,7 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("C'est bien beau de prier si tu penses à rien...");  
+            message.channel.send("C'est bien beau de prier si tu penses Ã  rien...");  
             return;
 		}
 
@@ -36,14 +36,14 @@ module.exports = {
             // Check if player didnt already communicate this turn
             if (!player.CanCommunicate) 
             {
-                message.channel.send("Une seule prière par jour. Désolé.");  
+                message.channel.send("Une seule priÃ¨re par jour. DÃ©solÃ©.");  
                 return;     
 			}
 
             // Checking if the msg emotes are allowed
             if (!Utils.CheckIfEmotesAreAllowed(message, arguments))
             {
-                message.channel.send("Ta prière contient des emojis interdit ! Bouh !");
+                message.channel.send("Ta priÃ¨re contient des emojis interdit ! Bouh !");
                 return;
 		    }
 
@@ -59,7 +59,7 @@ module.exports = {
             } 
 
             // Creating message to send
-            let msg = "Une prière est monté jusqu'à toi : ";
+            let msg = "Une priÃ¨re est montÃ© jusqu'Ã  toi : ";
             arguments.forEach(emote => 
             { 
                     msg += emote + " ";
@@ -67,7 +67,7 @@ module.exports = {
 	
             // Send the prayer and update player status
             channel.send(msg);
-            message.channel.send("Ta prière a bien été priée.")
+            message.channel.send("Ta priÃ¨re a bien Ã©tÃ© priÃ©e.")
             player.CanCommunicate = false;
         }
         else
