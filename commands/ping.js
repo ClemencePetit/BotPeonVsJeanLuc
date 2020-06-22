@@ -1,7 +1,7 @@
 // Mines' vision power
 module.exports = {
     name: 'ping',
-    description: 'Partage tes intentions ࡴon co겵ipier ou provoque l\'adversaire. Tu dois donner comme argument \"attaque\", \"dꧥnse\" or \"provocation\"',
+    description: 'Partage tes intentions à ton coéquipier ou provoque l\'adversaire. Tu dois donner comme argument \"attaque\", \"défense\" or \"provocation\"',
     execute(DemiurgeBot, message, arguments) 
     {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
@@ -13,7 +13,7 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("Prꤩse le fond de ta pensꥠ: \"attaque\", \"dꧥnse\" ou \"provocation\".");  
+            message.channel.send("Précise le fond de ta pensée: \"attaque\", \"dꧥnse\" ou \"provocation\".");  
             return;
 		}
         else if (arguments.length > 1)
@@ -70,15 +70,15 @@ module.exports = {
             {
                 if (arguments[0] === "attaque")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bont鬠te fait savoir qu'il souhaite passer ࡬'offensive !";
+                    pingMessage = "Votre dieu, dans son infinie bonté fait savoir qu'il souhaite passer à l'offensive !";
 				}
-                else if (arguments[0] === "dꧥnse")
+                else if (arguments[0] === "défense")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bont鬠te fait savoir qu'il souhaite dꧥndre la position !";        
+                    pingMessage = "Votre dieu, dans son infinie bonté fait savoir qu'il souhaite défendre la position !";        
 				}
                 else //taunt
                 {
-                    pingMessage = "Le dieu d'une religion d'h곩tiques te fait savoir son d괩r de vous anꢮtir !";
+                    pingMessage = "Le dieu d'une religion d'hérétiques te fait savoir son désir de vous anéantir !";
 				}
 			}
             else // A human send the message
@@ -87,7 +87,7 @@ module.exports = {
                 {
                     pingMessage = "La créature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite passer à l'offensive !";
 				}
-                else if (arguments[0] === "dꧥnse")
+                else if (arguments[0] === "défense")
                 {
                     pingMessage = "La créature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite défendre la position !";        
 				}
