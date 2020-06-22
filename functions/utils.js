@@ -237,10 +237,15 @@ class Utils {
 			}
 		}
 		else{
-			message.channel.send("5 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-			console.log("5 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-			DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs.push(son);
-			return message.channel.send(son + " en attente.");
+			if(!DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).playing)
+			{
+				message.reply("pas de musique en cours");
+				Utils.play(DemiurgeBot,message,son);
+			}
+			else{
+				message.reply("musique en cours : mise en attente");
+				DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs.push(son);
+			}
 		}
 	}
 	
@@ -256,6 +261,7 @@ class Utils {
 		console.log("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);*/
 		/*DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();*/
+		playing=false;
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).voiceChannel.leave();
 	}
 	
@@ -279,12 +285,14 @@ class Utils {
 			}
 			else{
 				message.reply("fin de la liste");
+				serveurQueue.playing=false;
 			}
 			
 			/*message.channel.send("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			console.log("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);*/
 		});
+		playing=true;
 		serveurQueue.textChannel.send("on lance "+son);
 }
 }

@@ -37,7 +37,7 @@ module.exports = {
                 Utils.execute(DemiurgeBot, message, './Sons/start_fr.wav');
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Moi, Le Démiurge intangible du Jeu, serai maître de votre partie.");
                 Utils.PrintStringToAllChannels(DemiurgeBot, "Je vous prierai d'être poli et de commencer toutes vos phrases par **!** qui veut dire *s'il vous plait* en théoludolique. Merci.");
-                Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi aide. *!help* aide entendu.");
+                Utils.PrintStringToAllChannels(DemiurgeBot, "Si tu te perds dans les méandres de la complexité ludique, dis-moi aide. *!aide* bien entendu.");
                 //Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
 
             } else {
