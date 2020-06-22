@@ -1,7 +1,7 @@
 // Mines' vision power
 module.exports = {
     name: 'ping',
-    description: 'Partage tes intentions à ton coéquipier ou provoque l\'adversaire. Tu dois donner comme argument \"attaque\", \"défense\" or \"provocation\"',
+    description: 'Partage tes intentions à¡´on coê²µipier ou provoque l\'adversaire. Tu dois donner comme argument \"attaque\", \"dê§¥nse\" or \"provocation\"',
     execute(DemiurgeBot, message, arguments) 
     {
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
@@ -13,12 +13,12 @@ module.exports = {
 
         if (arguments.length < 1)
         {
-            message.channel.send("Précise le fond de ta pensée : \"attaque\", \"défense\" ou \"provocation\".");  
+            message.channel.send("Prê¤©se le fond de ta pensê¥ : \"attaque\", \"dê§¥nse\" ou \"provocation\".");  
             return;
 		}
         else if (arguments.length > 1)
         {
-            message.channel.send("Tu parles trop. Je ne ferais passer que les messages suivants : \"attaque\", \"défense\" ou \"provocation\".");  
+            message.channel.send("Tu parles trop. Je ne ferais passer que les messages suivants : \"attaque\", \"dê§¥nse\" ou \"provocation\".");  
             return;   
 		}
 
@@ -70,15 +70,15 @@ module.exports = {
             {
                 if (arguments[0] === "attaque")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bonté, te fait savoir qu'il souhaite passer à l'offensive !";
+                    pingMessage = "Votre dieu, dans son infinie bonté¬ te fait savoir qu'il souhaite passer à¡¬'offensive !";
 				}
-                else if (arguments[0] === "défense")
+                else if (arguments[0] === "dê§¥nse")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bonté, te fait savoir qu'il souhaite défendre la position !";        
+                    pingMessage = "Votre dieu, dans son infinie bonté¬ te fait savoir qu'il souhaite dê§¥ndre la position !";        
 				}
                 else //taunt
                 {
-                    pingMessage = "Le dieu d'une religion d'hérétiques te fait savoir son désir de vous anéantir !";
+                    pingMessage = "Le dieu d'une religion d'hê³©tiques te fait savoir son dê´©r de vous anê¢®tir !";
 				}
 			}
             else // A human send the message
@@ -87,7 +87,7 @@ module.exports = {
                 {
                     pingMessage = "La crÃ©ature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite passer Ã  l'offensive !";
 				}
-                else if (arguments[0] === "défense")
+                else if (arguments[0] === "dê§¥nse")
                 {
                     pingMessage = "La crÃ©ature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite dÃ©fendre la position !";        
 				}
