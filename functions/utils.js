@@ -253,14 +253,15 @@ class Utils {
 		//console.log(DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 		message.channel.send("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 		console.log("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
-		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();
+		/*DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();*/
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).voiceChannel.leave();
 	}
 	
 	static play(DemiurgeBot,message,son) {
 		let serveurQueue=DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id);
 		if(!son){
+			message.reply("VIDE");
 			DemiurgeBot.PVSJL.get(message.guild.id).queue.delete(message.guild.id);
 			return;
 		}
@@ -269,10 +270,19 @@ class Utils {
 		.on("finish",()=>{
 			message.channel.send("3 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			console.log("3 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-			serveurQueue.songs.shift();
-			message.channel.send("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			if(serveurQueue.songs[1])
+			{
+				message.reply("prochaine : "+serveurQueue.songs[1]);
+				serveurQueue.songs.shift();
+				Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);
+			}
+			else{
+				message.reply("fin de la liste");
+			}
+			
+			/*message.channel.send("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			console.log("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-			Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);
+			Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);*/
 		});
 		serveurQueue.textChannel.send("on lance "+son);
 }
