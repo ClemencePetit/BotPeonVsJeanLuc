@@ -50,17 +50,13 @@ module.exports =
                         message.channel.send("Le nouveau score de la team JL est: " + PVSJL.game.ScoreTeamB);
                         Utils.PrintStringToAllChannels(DemiurgeBot, "La religion de Jean-Luc gagne " + toAdd + " point supplémentaire. Elle en a désormais " + PVSJL.game.ScoreTeamB);
                         Utils.execute(DemiurgeBot, message, './Sons/' + PVSJL.game.ScoreTeamB + 'JL.wav');
-                        if (PVSJL.game.ScoreTeamB === 3) {
-                            Utils.execute(DemiurgeBot, message, './Sons/victoireJL.wav');
-                        }
+                        
                     } else {
                         PVSJL.game.ScoreTeamA += toAdd;
                         message.channel.send("Le nouveau score de la team Peon est: " + PVSJL.game.ScoreTeamA);
                         Utils.PrintStringToAllChannels(DemiurgeBot, "Péon et son Dieu augmentent leur compteur et atteignent le score de " + PVSJL.game.ScoreTeamA);
                         Utils.execute(DemiurgeBot, message, './Sons/' + PVSJL.game.ScoreTeamA + 'P.wav');
-                        if (PVSJL.game.ScoreTeamA === 3) {
-                            Utils.execute(DemiurgeBot, message, './Sons/victoireP.wav');
-                        }
+                        
                     }
                 } else {
                     message.channel.send("Tu ne dispose des permissions nécessaires, simple mortel.");

@@ -30,7 +30,7 @@ module.exports = {
                 PVSJL.running = true;
 
                 PVSJL.game.StartGame();
-                DemiurgeBot.user.setActivity("Observer de vaines luttes d\égo et de pouvoir.").catch(console.error);
+                DemiurgeBot.user.setActivity("Observer de vaines luttes d\'égo et de pouvoir.").catch(console.error);
 
                 DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
                 Utils.execute(DemiurgeBot, message, './Sons/start.wav');

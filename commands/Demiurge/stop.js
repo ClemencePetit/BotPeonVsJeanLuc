@@ -20,14 +20,16 @@ module.exports = {
                 message.channel.send(message.author.username + " choisit d'arrêter ces enfantillages sans autre forme de procès.");
 
 				Utils.stop(DemiurgeBot,message);
-                PVSJL.running = false;
-                PVSJL.game = null;
+                
 
                 try {
                     DemiurgeBot.PVSJL.set(message.guild.id, PVSJL);
                     if (PVSJL.game.ScoreTeamA === 3 || PVSJL.game.ScoreTeamB === 3) {
 
                         let winnerName = PVSJL.game.ScoreTeamB === 3 ? "Jean-Luc" : "Péon";
+						let sonwinner = PVSJL.game.ScoreTeamB === 3 ? "./Sons/victoireJL.wav" : "./Sons/victoireP.wav";
+
+						Utils.execute(DemiurgeBot, message, sonwinner);
 
                         Utils.PrintStringToAllChannels(DemiurgeBot, "La religion de " + winnerName + " est sacrée vainqueur !");
                         Utils.PrintStringToAllChannels(DemiurgeBot, "Maintenant que cette rivalité a trouvé sa conclusion, nous pouvons retourner à notre repos... jusqu\'à la prochaine fois.");
@@ -36,7 +38,9 @@ module.exports = {
                         Utils.PrintStringToAllChannels(DemiurgeBot, "Les enfantillages ont assez duré. Les Démiurges en ont eu marre.");
                     }
                     DemiurgeBot.user.setActivity("Construire un monde à détruire").catch(console.error);
-
+					PVSJL.running = false;
+					PVSJL.game = null;
+					console.log("On a bien arrêté");
 
                 } catch (e) {
                     console.error(e);
