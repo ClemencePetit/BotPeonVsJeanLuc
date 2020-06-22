@@ -94,8 +94,45 @@ module.exports = {
 			channelDP.send(helpMsgDP).then(sent => { // 'sent' is that message you just sent
 							sent.pin();
 							});
-							
-							
+				
+			//const attachment = new Discord.Attachment('../../images/P.png', 'Peon.png');
+				
+			let detailsMsgP = new MessageEmbed()
+			.attachFiles(['images/P.png'])
+			.setImage('attachment://P.png')
+			.setTitle("Tu es Péon")
+			.setDescription("Ton objectif : récupérer les reliques de ton Dieu pour en vêtir sa statue et ainsi montrer la supériorité de ta religion avec l\'aide de ce dernier. Repère-toi bien sur le terrain avant de commencer !");
+			
+			channelP.send(detailsMsgP).then(sent => { // 'sent' is that message you just sent
+							sent.pin();
+							});	
+			let detailsMsgJL = new MessageEmbed()
+			.attachFiles(['images/JL.png'])
+			.setImage('attachment://JL.png')
+			.setTitle("Tu es Jean-Luc")
+			.setDescription("Ton objectif : récupérer les reliques de ton Dieu pour en vêtir sa statue et ainsi montrer la supériorité de ta religion avec l\'aide de ce dernier. Repère-toi bien sur le terrain avant de commencer !");
+			
+			channelJL.send(detailsMsgJL).then(sent => { // 'sent' is that message you just sent
+							sent.pin();
+							});	
+			let detailsMsgDP = new MessageEmbed()
+			.attachFiles(['images/P.png'])
+			.setImage('attachment://P.png')
+			.setTitle("Tu es Dieu Péon")
+			.setDescription("Ton objectif : aider ton humain, Péon, à récupérer tes reliques afin d\'en vêtir ta statue et ainsi montrer la supériorité de ta religion. Repère bien ton humain sur le terrain avant de commencer !");
+			
+			channelDP.send(detailsMsgDP).then(sent => { // 'sent' is that message you just sent
+							sent.pin();
+							});	
+			let detailsMsgDJL = new MessageEmbed()
+			.attachFiles(['images/JL.png'])
+			.setImage('attachment://JL.png')
+			.setTitle("Tu es Dieu Jean-Luc")
+			.setDescription("Ton objectif : aider ton humain, Jean-Luc, à récupérer tes reliques afin d\'en vêtir ta statue et ainsi montrer la supériorité de ta religion. Repère bien ton humain sur le terrain avant de commencer !");
+			
+			channelDJL.send(detailsMsgDJL).then(sent => { // 'sent' is that message you just sent
+							sent.pin();
+							});
 			
 			/*let channels = [];
             channels.push(DemiurgeBot.channels.cache.find(ch => ch.name === 'jean-luc'));
