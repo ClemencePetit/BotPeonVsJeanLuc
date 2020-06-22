@@ -16,7 +16,7 @@ module.exports =
                     let player = Utils.GetPlayerInCurrentChannel(DemiurgeBot, message);
 
                     // Displaying actions
-                    message.channel.send("Durant ce tour, tu as réalisé les actions suivantes:\n" + Utils.GetPlayerActionsString(player));
+                    message.channel.send("Durant ce jour, tu as réalisé les actions suivantes:\n" + Utils.GetPlayerActionsString(player));
                 } else {
 
                     // Getting each player's actions
@@ -40,7 +40,7 @@ module.exports =
                     message.channel.send("Durant ce tour, les joueurs ont réalisé les actions suivantes:\n" + actions_msg);
                 }
             } else {
-                message.channel.send("Il n\'y a pas de partie en cours");
+                message.channel.send("Nous sommes en temps de paix.");
             }
 
         },

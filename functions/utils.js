@@ -185,6 +185,7 @@ class Utils {
         return true;
     }
 
+
     static GetMineStatus(game) {
         let mines = game.Mines;
 
@@ -202,6 +203,98 @@ class Utils {
 
         return minesMsg;
     }
+
+	
+	static async execute(DemiurgeBot, message, son){
+		let voiceChannel = message.member.voice.channel;
+		if(!voiceChannel)
+		{
+			return message.channel.send("Faut être dans un vocal");
+		}
+		if(!DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id)){
+			let queueConstruct={
+				textChannel: message.channel,
+				voiceChannel: voiceChannel,
+				connection: null,
+				songs: [],
+				playing: true
+			};
+			
+			DemiurgeBot.PVSJL.get(message.guild.id).queue.set(message.guild.id, queueConstruct);
+			console.log("1 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			message.channel.send("1 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			queueConstruct.songs.push(son);
+			
+			try{
+				let connection = await voiceChannel.join();
+				queueConstruct.connection=connection;
+				Utils.play(DemiurgeBot,message,son);
+			}
+			catch(err){
+				console.log(err);
+				DemiurgeBot.PVSJL.get(message.guild.id).queue.delete(message.guild.id);
+				return message.channel.send(err);
+			}
+		}
+		else{
+			if(!DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).playing)
+			{
+				message.reply("pas de musique en cours");
+				Utils.play(DemiurgeBot,message,son);
+			}
+			else{
+				message.reply("musique en cours : mise en attente");
+				DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs.push(son);
+			}
+		}
+	}
+	
+	static stop(DemiurgeBot,message){
+		console.log("here");
+		message.reply("here");
+		if(!message.member.voice.channel)
+		{
+			return message.channel.send("Faut être connecté");
+		}
+		//console.log(DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+		/*message.channel.send("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+		console.log("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);*/
+		/*DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();*/
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).playing=false;
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).voiceChannel.leave();
+	}
+	
+	static play(DemiurgeBot,message,son) {
+		let serveurQueue=DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id);
+		if(!son){
+			message.reply("VIDE");
+			DemiurgeBot.PVSJL.get(message.guild.id).queue.delete(message.guild.id);
+			return;
+		}
+		
+		let dispatcher = serveurQueue.connection.play(son)
+		.on("finish",()=>{
+			message.channel.send("3 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			console.log("3 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			if(serveurQueue.songs[1])
+			{
+				message.reply("prochaine : "+serveurQueue.songs[1]);
+				serveurQueue.songs.shift();
+				Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);
+			}
+			else{
+				message.reply("fin de la liste");
+				serveurQueue.playing=false;
+			}
+			
+			/*message.channel.send("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			console.log("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+			Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);*/
+		});
+		serveurQueue.playing=true;
+		serveurQueue.textChannel.send("on lance "+son);
+}
 }
 
 Utils.PLAYER_TYPE = PLAYER_TYPE;

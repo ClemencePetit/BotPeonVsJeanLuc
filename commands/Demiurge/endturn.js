@@ -18,7 +18,9 @@ module.exports = {
 
                 if (PVSJL.game.EndTurn()) {
 
-                    Utils.PrintStringToAllChannels(DemiurgeBot, "Les conséquences de cette journée seront-elles mémorables? Nous contactons les Démiurges présents sur place.");
+                    Utils.PrintStringToAllChannels(DemiurgeBot, "Les conséquences de cette journée seront-elles mémorables ? Nous contactons les Démiurges présents sur place.");
+					
+				Utils.execute(DemiurgeBot,message,'./Sons/endturn.wav');
 
                     let actions = PVSJL.game.GetOrderedActionsFromPlayers();
                     let actions_msg = "";

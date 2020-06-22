@@ -16,11 +16,12 @@ module.exports = {
             if (message.member.roles.cache.some(r => r.name === "Demiurge")) {
                 let peonMsg = new MessageEmbed()
                     .setColor([210, 210, 210])
-                    .setTitle("Game State")
-                    .addField("Péon", "PA :" + PVSJL.game.HumanTeamA.CurrentPA + " - Shield : " + PVSJL.game.HumanTeamA.ShieldDuration + " - Stun : " + PVSJL.game.HumanTeamA.StunDuration + " - Position : " + PVSJL.game.HumanTeamA.Position)
-                    .addField("Jean-Luc", "PA :" + PVSJL.game.HumanTeamB.CurrentPA + " - Shield : " + PVSJL.game.HumanTeamB.ShieldDuration + " - Stun : " + PVSJL.game.HumanTeamB.StunDuration + " - Position : " + PVSJL.game.HumanTeamB.Position)
-                    .addField("Dieu Péon", "Shield :" + PVSJL.game.GodTeamA.ShieldCD + " - Stun : " + PVSJL.game.GodTeamA.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamA.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamA.MineVisionCD)
-                    .addField("Dieu Jean-Luc", "Shield :" + PVSJL.game.GodTeamB.ShieldCD + " - Stun : " + PVSJL.game.GodTeamB.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamB.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamB.MineVisionCD);
+                    .setTitle("Etat du jeu")
+                    .addField("Scores", "Religion de Péon : " + PVSJL.game.ScoreTeamA + " | " + " Religion de Jean-Luc : " + PVSJL.game.ScoreTeamB)
+                    .addField("Péon", "PA :" + PVSJL.game.HumanTeamA.CurrentPA + " - Bouclier : " + PVSJL.game.HumanTeamA.ShieldDuration + " - Assommé : " + PVSJL.game.HumanTeamA.StunDuration + " - Position : " + PVSJL.game.HumanTeamA.Position)
+                    .addField("Jean-Luc", "PA :" + PVSJL.game.HumanTeamB.CurrentPA + " - Bouclier : " + PVSJL.game.HumanTeamB.ShieldDuration + " - Assommé : " + PVSJL.game.HumanTeamB.StunDuration + " - Position : " + PVSJL.game.HumanTeamB.Position)
+                    .addField("Dieu Péon", "Bouclier :" + PVSJL.game.GodTeamA.ShieldCD + " - Assommé : " + PVSJL.game.GodTeamA.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamA.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamA.MineVisionCD)
+                    .addField("Dieu Jean-Luc", "Bouclier :" + PVSJL.game.GodTeamB.ShieldCD + " - Assommé : " + PVSJL.game.GodTeamB.AOEStunCD + " - Portails : " + PVSJL.game.GodTeamB.TPPortalCD + " - Vision : " + PVSJL.game.GodTeamB.MineVisionCD);
                 message.channel.send(peonMsg).catch(console.error);
 
                 // Send Mine Status

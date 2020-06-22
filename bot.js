@@ -29,7 +29,7 @@ DemiurgeBot.login(process.env.BOTKEY);
 
 DemiurgeBot.on('ready', () => {
   console.log(`Logged in as ${DemiurgeBot.user.tag}!`);
-  DemiurgeBot.user.setActivity("Building a world to destroy").catch(console.error);
+  DemiurgeBot.user.setActivity("Construire un monde à détruire").catch(console.error);
 });
 
 //React to !message
@@ -55,7 +55,7 @@ DemiurgeBot.on('message', message => {
         DemiurgeBot.commands.get(command).execute(DemiurgeBot, message, args);
     } catch (error) {
         console.error(error);
-        message.reply('there was an error trying to execute that command!' + error).catch(console.error);
+        message.reply('there was an error trying to execute that command!' + error + " à la ligne "+ error.lineNumber).catch(console.error);
     }
   }
   

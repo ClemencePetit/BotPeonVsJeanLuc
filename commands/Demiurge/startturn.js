@@ -16,6 +16,8 @@ module.exports = {
 
                 PVSJL.game.StartTurn();
 				Utils.PrintToAll(DemiurgeBot,message, "Un jour de plus. Au travail.");
+				
+				Utils.execute(DemiurgeBot,message,'./Sons/startturn.wav');
                 //Utils.PrintCurrentTurnInfo(DemiurgeBot, message);
 				if(PVSJL.game.GetCurrentTurnType==1)
 				{
