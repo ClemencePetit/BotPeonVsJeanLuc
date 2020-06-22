@@ -5,7 +5,7 @@ const Utils = require("../functions/utils").Utils;
 // Cancel the choice of actions for the current turn before command done is applied
 module.exports = {
     name: 'rembobiner',
-    description: 'Te permet de recommencer ta journée à 0 avant que tu ne sois allé dormir (sinon, c\'est trop tard, malheureusement.',
+    description: 'Te permet de recommencer ta journée à 0 avant que tu ne sois allé dormir (sinon, c\'est trop tard, malheureusement).',
     execute(DemiurgeBot, message, arguments) {
 
         let PVSJL = DemiurgeBot.PVSJL.get(message.guild.id);
