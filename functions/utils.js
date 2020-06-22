@@ -246,13 +246,14 @@ class Utils {
 	
 	static stop(DemiurgeBot,message){
 		console.log("here");
+		message.reply("here");
 		if(!message.member.voice.channel)
 		{
 			return message.channel.send("Faut être connecté");
 		}
 		//console.log(DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-		message.channel.send("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
-		console.log("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+		/*message.channel.send("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
+		console.log("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);*/
 		/*DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();*/
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).voiceChannel.leave();
