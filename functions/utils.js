@@ -261,7 +261,7 @@ class Utils {
 		console.log("2 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);*/
 		/*DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs=[];
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).connection.dispatcher.end();*/
-		playing=false;
+		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).playing=false;
 		DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).voiceChannel.leave();
 	}
 	
@@ -292,7 +292,7 @@ class Utils {
 			console.log("4 " + DemiurgeBot.PVSJL.get(message.guild.id).queue.get(message.guild.id).songs);
 			Utils.play(DemiurgeBot,message,serveurQueue.songs[0]);*/
 		});
-		playing=true;
+		serveurQueue.playing=true;
 		serveurQueue.textChannel.send("on lance "+son);
 }
 }
