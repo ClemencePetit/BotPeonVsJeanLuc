@@ -70,30 +70,30 @@ module.exports = {
             {
                 if (arguments[0] === "attack")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bonté, vous fait savoir qu'il souhaite passer à l'offensive !";
+                    pingMessage = "Votre dieu, dans son infinie bontÃ©, vous fait savoir qu'il souhaite passer Ã  l'offensive !";
 				}
                 else if (arguments[0] === "defense")
                 {
-                    pingMessage = "Votre dieu, dans son infinie bonté, vous fait savoir qu'il souhaite défendre la position !";        
+                    pingMessage = "Votre dieu, dans son infinie bontÃ©, vous fait savoir qu'il souhaite dÃ©fendre la position !";        
 				}
                 else //taunt
                 {
-                    pingMessage = "Le dieu d'une religion d'hérétiques vous fait savoir son désir de vous anéantir!";
+                    pingMessage = "Le dieu d'une religion d'hÃ©rÃ©tiques vous fait savoir son dÃ©sir de vous anÃ©antir!";
 				}
 			}
             else // A human send the message
             {
                 if (arguments[0] === "attack")
                 {
-                    pingMessage = "La créature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite passer à l'offensive !";
+                    pingMessage = "La crÃ©ature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite passer Ã  l'offensive !";
 				}
                 else if (arguments[0] === "defense")
                 {
-                    pingMessage = "La créature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite défendre la position !";        
+                    pingMessage = "La crÃ©ature insiginifiante que vous supervisez vous fait savoir qu'elle souhaite dÃ©fendre la position !";        
 				}
                 else //taunt
                 {
-                    pingMessage = "Une créature insignifiante suivant une religion d'hérétiques vous fait savoir son désir de vous anéantir !";
+                    pingMessage = "Une crÃ©ature insignifiante suivant une religion d'hÃ©rÃ©tiques vous fait savoir son dÃ©sir de vous anÃ©antir !";
 				}
 			}
 
